@@ -1,6 +1,7 @@
 <script>
   import { max, range, groups } from "d3";
   import cutsData from "$data/cuts.csv";
+  import Lost from "$components/Test.Lost.svelte";
 
   const toSeconds = (str) => {
     const [m, s] = str.split(":").map((d) => +d);
@@ -32,60 +33,82 @@
     index,
     scenes: getScenes(index)
   }));
+
+  let lost = true;
 </script>
 
-<figure>
-  {#each episodes as { index, scenes }}
-    {@const empty = !scenes.length}
-    <div data-index={index} class:empty>
-      {#each scenes as { start, duration, type }}
-        {@const width = `${(duration / maxSeconds) * 100}%`}
-        {@const left = `${(start / maxSeconds) * 100}%`}
-        <span style:width style:left class={type} />
-      {/each}
-    </div>
-  {/each}
-</figure>
+<section>
+  <figure>
+    {#each episodes as { index, scenes } (index)}
+      {@const empty = !scenes.length}
+      <div data-index={index} class:empty>
+        {#each scenes as { start, duration, type }}
+          {@const width = `${(duration / maxSeconds) * 100}%`}
+          {@const left = `${(start / maxSeconds) * 100}%`}
+          <span style:width style:left class={type} class:lost />
+        {/each}
+      </div>
+    {/each}
+  </figure>
+  {#if lost}
+    <Lost {episodes} {maxSeconds} />
+  {/if}
+</section>
 
 <style>
-  figure {
+  section {
+    position: relative;
     margin: 0 auto;
     max-width: 40rem;
   }
 
   div {
-    border-bottom: 2px solid var(--color-bg);
-    background: var(--color-gray-100);
-    height: 8px;
+    --height: 7px;
     position: relative;
+    background: var(--color-gray-700);
+    height: var(--height);
+  }
+
+  div:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-bg);
   }
 
   div.empty {
-    background: var(--color-gray-50);
-    /* background: var(--color-highlight); */
+    background: var(--color-gray-800);
+    transition: height 1s ease-in-out;
     height: 0;
-    border: none;
-    transition: all 1s ease-in-out;
   }
 
   span {
     display: block;
     position: absolute;
     top: 0;
-    height: 100%;
+    height: calc(var(--height) - 1px);
     background: var(--color-gray-500);
     min-width: 2px;
+    transition: opacity;
+  }
+
+  span.lost {
+    opacity: 0;
   }
 
   :global(span.sex) {
-    background: red;
+    background: hotpink;
   }
 
   :global(span.politics) {
-    background: green;
+    background: lawngreen;
   }
 
   :global(span.non-hetero-relationship) {
-    background: blue;
+    background: turquoise;
   }
 </style>

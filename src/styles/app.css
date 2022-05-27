@@ -6,8 +6,8 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "National 2 Web", Helvetica, Arial, sans-serif;
-	--serif: "Tiempos Text Web", Georgia, Times, serif;
+	--sans: "Atkinson", Helvetica, Arial, sans-serif;
+	--serif: Georgia, Times, serif;
 	--mono: Menlo, Consolas, Monaco, "Courier New", monospace;
 	
 	/* z-index */
@@ -18,21 +18,21 @@
 
 	/* presets */
 	--border-radius: 2px;
-	--font-body: var(--serif);
+	--font-body: var(--sans);
 	--font-form: var(--sans);
-	--color-bg: var(--color-white);
-	--color-fg: var(--color-gray-900);
-	--color-primary: var(--color-black);
-  --color-link: var(--color-purple);
-  --color-focus: var(--color-red);
+	--color-bg: var(--color-gray-1000);
+	--color-fg: var(--color-gray-100);
+	--color-primary: var(--color-fg);
+  --color-link: var(--color-yellow);
+  --color-focus: var(--color-white);
   --color-highlight: var(--color-yellow);
-	--color-border: var(--color-gray-300);
-	--color-selection: var(--color-gray-300);
-	--color-button-bg: var(--color-gray-300);
-	--color-button-fg: var(--color-gray-900);
-	--color-button-hover: var(--color-gray-400);
-	--color-input-bg: var(--color-gray-50);
-	--color-input-fg: var(--color-gray-900);
+	--color-border: var(--color-gray-600);
+	--color-selection: var(--color-gray-600);
+	--color-button-bg: var(--color-fg);
+	--color-button-fg: var(--color-bg);
+	--color-button-hover: var(--color-gray-300);
+	--color-input-bg: var(--color-gray-900);
+	--color-input-fg: var(--color-gray-50);
 	--color-placeholder: var(--color-gray-500);
 	
 }
