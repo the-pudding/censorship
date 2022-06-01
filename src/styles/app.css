@@ -6,9 +6,9 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "Atkinson", Helvetica, Arial, sans-serif;
-	--serif: Georgia, Times, serif;
-	--mono: Menlo, Consolas, Monaco, "Courier New", monospace;
+	--sans: "Atkinson", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+	--serif: Iowan Old Style, Times New Roman, Times, serif;
+	--mono: Menlo, Consolas, Monaco, monospace;
 	
 	/* z-index */
 	--z-bottom: -100;
@@ -20,43 +20,43 @@
 	--border-radius: 2px;
 	--font-body: var(--sans);
 	--font-form: var(--sans);
-	--color-bg: var(--color-gray-1000);
+	--color-bg: var(--color-gray-900);
 	--color-fg: var(--color-gray-100);
-	--color-primary: var(--color-fg);
-  --color-link: var(--color-yellow);
-  --color-focus: var(--color-white);
+	--color-primary: var(--color-black);
+  --color-link: var(--color-purple);
+  --color-focus: var(--color-red);
   --color-highlight: var(--color-yellow);
-	--color-border: var(--color-gray-600);
-	--color-selection: var(--color-gray-600);
-	--color-button-bg: var(--color-fg);
-	--color-button-fg: var(--color-bg);
-	--color-button-hover: var(--color-gray-300);
-	--color-input-bg: var(--color-gray-900);
-	--color-input-fg: var(--color-gray-50);
+	--color-border: var(--color-gray-300);
+	--color-selection: var(--color-gray-300);
+	--color-button-bg: var(--color-gray-700);
+	--color-button-fg: var(--color-gray-300);
+	--color-button-hover: var(--color-gray-700);
+	--color-input-bg: var(--color-gray-700);
+	--color-input-fg: var(--color-gray-300);
 	--color-placeholder: var(--color-gray-500);
 	
 }
 
 h1 {
-	font-size: var(--48px);
+	font-size: var(--48px, 48px);
 }
 
 h2 {
-	font-size: var(--36px);
+	font-size: var(--36px, 36px);
 }
 
 h3 {
-	font-size: var(--28px);
+	font-size: var(--28px, 28px);
 }
 
 h4 {
-	font-size: var(--24px);
+	font-size: var(--24px, 24px);
 }
 
 h5 {
-	font-size: var(--22px);
+	font-size: var(--22px, 22px);
 }
 
 h6 {
-	font-size: var(--20px);
+	font-size: var(--20px, 20px);
 }

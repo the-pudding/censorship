@@ -2,6 +2,7 @@
   import { max, range, groups } from "d3";
   import cutsData from "$data/cuts.csv";
   import Lost from "$components/Test.Lost.svelte";
+  import Video from "$components/Test.Video.svelte";
 
   const toSeconds = (str) => {
     const [m, s] = str.split(":").map((d) => +d);
@@ -38,6 +39,9 @@
 </script>
 
 <section>
+  <Video />
+</section>
+<section>
   <figure>
     {#each episodes as { index, scenes } (index)}
       {@const empty = !scenes.length}
@@ -58,7 +62,7 @@
 <style>
   section {
     position: relative;
-    margin: 0 auto;
+    margin: 4rem auto;
     max-width: 40rem;
   }
 
