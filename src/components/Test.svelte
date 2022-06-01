@@ -41,7 +41,8 @@
 <section>
   <Video />
 </section>
-<section>
+
+<!-- <section>
   <figure>
     {#each episodes as { index, scenes } (index)}
       {@const empty = !scenes.length}
@@ -57,8 +58,7 @@
   {#if lost}
     <Lost {episodes} {maxSeconds} />
   {/if}
-</section>
-
+</section> -->
 <style>
   section {
     position: relative;

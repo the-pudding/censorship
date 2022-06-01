@@ -6,7 +6,6 @@
   const end = 9.4;
   const durationCut = end - start;
   const mid = durationCut / 2 + start;
-  const defaultWidth = 0.3;
   const scaleBefore = scaleLinear().domain([0, start]).range([0, mid]);
   const scaleAfter = scaleLinear();
 
@@ -19,6 +18,7 @@
   let autoplay = false;
 
   const onCensored = () => {
+    paused = true;
     el.pause();
     el.currentTime = 0;
     censored = !censored;
@@ -29,11 +29,13 @@
     paused = true;
   };
 
+  const onPlay = () => {
+    paused = false;
+  };
+
   const onToggle = () => {
-    if (paused) {
-      paused = false;
-      el.play();
-    } else el.pause();
+    if (paused) el.play();
+    else el.pause();
   };
 
   const toPercent = (a, b = 1) => `${(a / b) * 100}%`;
@@ -43,7 +45,8 @@
 
   $: jumped = currentTime === 0 ? false : jumped;
 
-  $: text = censored ? "View Original" : "View Censored";
+  $: censoreText = censored ? "View original" : "View censored";
+  $: toggleText = paused ? "Play video" : "Pause video";
 
   $: progress =
     censored && jumped
@@ -53,10 +56,10 @@
       : currentTime || 0;
 
   $: leftCut = toPercent(mid, duration);
-  $: widthCut = toPercent(censored ? defaultWidth : durationCut, duration);
+  $: widthCut = censored ? "2rem" : toPercent(durationCut, duration);
   $: widthElapsed = toPercent(progress, duration);
 
-  $: if (duration && censored && !jumped && !paused && currentTime > start) {
+  $: if (censored && !jumped && !paused && currentTime > start) {
     jumped = true;
     el.currentTime = end;
   }
@@ -66,10 +69,8 @@
     el.play();
   }
 
-  $: console.log({ jumped, censored });
+  $: playing = !paused;
 </script>
-
-<p>{currentTime} of {duration}</p>
 
 <div>
   <div class="video-wrapper">
@@ -79,13 +80,18 @@
       bind:currentTime
       bind:duration
       on:pause={onPause}
+      on:play={onPlay}
     >
       <track kind="captions" />
     </video>
 
-    <button class="btn-toggle" on:click={onToggle}
-      ><Icon name={buttonName} strokeWidth="1px" /></button
-    >
+    <button
+      aria-label={toggleText}
+      class="btn-toggle"
+      class:playing
+      on:click={onToggle}
+      ><Icon name={buttonName} strokeWidth="1px" />
+    </button>
   </div>
 
   <div class="controls">
@@ -95,17 +101,17 @@
         style:width={widthCut}
         style:left={leftCut}
         class="cut"
-        class:censored
-      />
+        class:censored>{Math.round(durationCut)}s</span
+      >
     </div>
   </div>
 </div>
 <div>
   <button
-    aria-label="play video"
+    class:censored
     class="btn-censor"
     style:left={leftCut}
-    on:click={onCensored}>{text}</button
+    on:click={onCensored}>{censoreText}</button
   >
 </div>
 
@@ -125,6 +131,7 @@
     left: 0;
     height: 100%;
     background: var(--color-gray-300);
+    line-height: 1;
   }
 
   .cut {
@@ -132,11 +139,13 @@
     opacity: 0.75;
     transform: translate(-50%, 0);
     transition: all 0.5s ease-in-out;
+    text-align: center;
   }
 
   .cut.censored {
     background: var(--color-bg);
     opacity: 1;
+    color: red;
   }
 
   .cut:before,
@@ -165,10 +174,17 @@
     position: relative;
   }
 
-  .toggle {
+  .btn-censor {
     position: absolute;
     top: 0;
     transform: translate(-50%, 50%);
+    text-transform: uppercase;
+    background-color: red;
+    color: white;
+  }
+
+  .btn-censor.censored {
+    background-color: var(--color-input-bg);
   }
 
   .btn-toggle {
@@ -181,13 +197,20 @@
     opacity: 0.5;
     background: transparent;
     border-radius: 50%;
-    width: calc(var(--64px) * 1);
-    height: calc(var(--64px) * 1);
+    padding: 0;
     text-align: center;
   }
 
   .btn-toggle:hover {
     opacity: 1;
+  }
+
+  .btn-toggle.playing {
+    display: none;
+  }
+
+  .video-wrapper:hover .btn-toggle.playing {
+    display: block;
   }
 
   :global(.btn-toggle svg) {
