@@ -2,7 +2,7 @@
   import { max, range, groups } from "d3";
   import cutsData from "$data/cuts.csv";
   import Lost from "$components/Test.Lost.svelte";
-  import Video from "$components/Test.Video.svelte";
+  import Video from "$components/Video.svelte";
 
   const toSeconds = (str) => {
     const [m, s] = str.split(":").map((d) => +d);
@@ -39,7 +39,7 @@
 </script>
 
 <section>
-  <Video />
+  <Video name="a93_full" start={4.1} end={9.3} />
 </section>
 
 <!-- <section>

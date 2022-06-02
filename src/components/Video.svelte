@@ -2,25 +2,29 @@
   import { tick } from "svelte";
   import { scaleLinear } from "d3";
   import Icon from "$components/helpers/Icon.svelte";
-  const start = 4.1;
-  const end = 9.4;
+
+  export let name;
+  export let start;
+  export let end;
+  export let censored = true;
+
   const durationCut = end - start;
   const mid = durationCut / 2 + start;
   const scaleBefore = scaleLinear().domain([0, start]).range([0, mid]);
   const scaleAfter = scaleLinear();
 
-  let el;
+  let videoEl;
+  let trackEl;
   let duration;
   let currentTime = 0;
   let paused = true;
-  let censored = true;
   let jumped = false;
   let autoplay = false;
 
   const onCensored = () => {
     paused = true;
-    el.pause();
-    el.currentTime = 0;
+    videoEl.pause();
+    videoEl.currentTime = 0;
     censored = !censored;
     autoplay = true;
   };
@@ -34,19 +38,20 @@
   };
 
   const onToggle = () => {
-    if (paused) el.play();
-    else el.pause();
+    if (paused) videoEl.play();
+    else videoEl.pause();
   };
 
   const toPercent = (a, b = 1) => `${(a / b) * 100}%`;
 
   $: buttonName = paused ? "play-circle" : "pause-circle";
-  $: scaleAfter.domain([end, duration]).range([mid, duration]);
-
-  $: jumped = currentTime === 0 ? false : jumped;
-
   $: censoreText = censored ? "View original" : "View censored";
   $: toggleText = paused ? "Play video" : "Pause video";
+
+  $: scaleAfter.domain([end, duration]).range([mid, duration]);
+
+  // reset jumped when video truly restarts
+  $: jumped = currentTime === 0 ? false : jumped;
 
   $: progress =
     censored && jumped
@@ -59,14 +64,16 @@
   $: widthCut = censored ? "2rem" : toPercent(durationCut, duration);
   $: widthElapsed = toPercent(progress, duration);
 
+  // jump past censored clip
   $: if (censored && !jumped && !paused && currentTime > start) {
     jumped = true;
-    el.currentTime = end;
+    videoEl.currentTime = end;
   }
 
+  // replay video after switching version
   $: if (autoplay && currentTime === 0 && paused) {
     autoplay = false;
-    el.play();
+    videoEl.play();
   }
 
   $: playing = !paused;
@@ -75,14 +82,21 @@
 <div>
   <div class="video-wrapper">
     <video
-      bind:this={el}
-      src="assets/clips/a93_full.mp4"
+      src="assets/clips/{name}.mp4"
+      bind:this={videoEl}
       bind:currentTime
       bind:duration
       on:pause={onPause}
       on:play={onPlay}
     >
-      <track kind="captions" />
+      <track
+        bind:this={trackEl}
+        label="English"
+        kind="captions"
+        srclang="en"
+        src="assets/captions/{name}.vtt"
+        default
+      />
     </video>
 
     <button
@@ -215,5 +229,16 @@
 
   :global(.btn-toggle svg) {
     display: block;
+  }
+
+  /* WebVTT cues */
+  :global(::cue) {
+    color: var(--color-white);
+    font: normal 2em var(--sans);
+  }
+
+  :global(::cue(v[voice="Russell"])) {
+    color: #fff;
+    background: #0095dd;
   }
 </style>
