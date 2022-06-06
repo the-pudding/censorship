@@ -160,17 +160,18 @@
   }
 
   .cut {
-    background: red;
+    background: var(--color-primary);
     opacity: 0.75;
     transform: translate(-50%, 0);
     transition: all 0.5s ease-in-out;
     text-align: center;
+    color: var(--color-bg);
   }
 
   .cut.censored {
     background: var(--color-bg);
     opacity: 1;
-    color: red;
+    color: var(--color-primary);
   }
 
   .cut:before,
@@ -180,7 +181,7 @@
     top: 0;
     line-height: 1;
     font-size: 2rem;
-    color: red;
+    color: var(--color-primary);
   }
 
   .cut:before {
@@ -204,12 +205,13 @@
     top: 0;
     transform: translate(-50%, 50%);
     text-transform: uppercase;
-    background-color: red;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
   }
 
   .btn-censor.censored {
     background-color: var(--color-input-bg);
+    color: var(--color-bg);
   }
 
   .btn-toggle {

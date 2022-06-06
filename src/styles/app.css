@@ -33,8 +33,8 @@
 	--color-button-bg: var(--color-gray-700);
 	--color-button-fg: var(--color-gray-300);
 	--color-button-hover: var(--color-gray-700);
-	--color-input-bg: var(--color-gray-700);
-	--color-input-fg: var(--color-gray-300);
+	--color-input-bg: var(--color-gray-100);
+	--color-input-fg: var(--color-gray-700);
 	--color-placeholder: var(--color-gray-500);
 	
 	--col-width: 40rem;
