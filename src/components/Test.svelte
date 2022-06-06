@@ -35,14 +35,15 @@
     scenes: getScenes(index)
   }));
 
-  let lost = true;
+  console.table(data);
+  let lost = false;
 </script>
 
 <section>
   <Video name="a93_full" start={4.1} end={9.3} />
 </section>
 
-<!-- <section>
+<section>
   <figure>
     {#each episodes as { index, scenes } (index)}
       {@const empty = !scenes.length}
@@ -58,7 +59,8 @@
   {#if lost}
     <Lost {episodes} {maxSeconds} />
   {/if}
-</section> -->
+</section>
+
 <style>
   section {
     position: relative;
@@ -87,7 +89,7 @@
   div.empty {
     background: var(--color-gray-800);
     transition: height 1s ease-in-out;
-    height: 0;
+    /* height: 0; */
   }
 
   span {

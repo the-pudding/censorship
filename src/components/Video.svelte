@@ -1,12 +1,12 @@
 <script>
-  import { tick } from "svelte";
   import { scaleLinear } from "d3";
   import Icon from "$components/helpers/Icon.svelte";
 
   export let name;
-  export let start;
-  export let end;
-  export let censored = true;
+  export let isToggle = true;
+  export let censored = false;
+  export let start = 0;
+  export let end = 0;
 
   const durationCut = end - start;
   const mid = durationCut / 2 + start;
@@ -79,7 +79,7 @@
   $: playing = !paused;
 </script>
 
-<div>
+<figure>
   <div class="video-wrapper">
     <video
       src="assets/clips/{name}.mp4"
@@ -108,28 +108,39 @@
     </button>
   </div>
 
-  <div class="controls">
-    <div class="progress">
-      <span style:width={widthElapsed} class="elapsed" />
-      <span
-        style:width={widthCut}
-        style:left={leftCut}
-        class="cut"
-        class:censored>{Math.round(durationCut)}s</span
-      >
+  {#if isToggle}
+    <div class="controls">
+      <div class="progress">
+        <span style:width={widthElapsed} class="elapsed" />
+        <span
+          style:width={widthCut}
+          style:left={leftCut}
+          class="cut"
+          class:censored>{Math.round(durationCut)}s</span
+        >
+      </div>
     </div>
+  {/if}
+</figure>
+
+{#if isToggle}
+  <div>
+    <button
+      class:censored
+      class="btn-censor"
+      style:left={leftCut}
+      on:click={onCensored}>{censoreText}</button
+    >
   </div>
-</div>
-<div>
-  <button
-    class:censored
-    class="btn-censor"
-    style:left={leftCut}
-    on:click={onCensored}>{censoreText}</button
-  >
-</div>
+{/if}
 
 <style>
+  figure {
+    position: relative;
+    margin: 0 auto;
+    max-width: var(--col-width);
+  }
+
   .progress {
     position: relative;
     width: 100%;
@@ -231,14 +242,13 @@
     display: block;
   }
 
-  /* WebVTT cues */
   :global(::cue) {
     color: var(--color-white);
-    font: normal 2em var(--sans);
+    font: normal 1em var(--sans);
   }
 
-  :global(::cue(v[voice="Russell"])) {
+  /* :global(::cue(v[voice="Russell"])) {
     color: #fff;
     background: #0095dd;
-  }
+  } */
 </style>
