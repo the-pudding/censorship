@@ -3,4 +3,4 @@
   export let clips;
 </script>
 
-<Video name={clips} isToggle={false} />
+<Video name={clips} />

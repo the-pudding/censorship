@@ -1,3 +1,3 @@
 <figure>
-  <p>Quote</p>
+  <h2>Quote Chart</h2>
 </figure>

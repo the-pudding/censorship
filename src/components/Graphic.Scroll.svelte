@@ -3,7 +3,7 @@
 </script>
 
 <figure>
-  <p>Scroll</p>
+  <h2>Scroll Chart</h2>
 </figure>
 
 <div class="steps">

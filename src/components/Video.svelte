@@ -3,7 +3,7 @@
   import Icon from "$components/helpers/Icon.svelte";
 
   export let name;
-  export let isToggle = true;
+  export let toggle = false;
   export let censored = false;
   export let start = 0;
   export let end = 0;
@@ -108,7 +108,7 @@
     </button>
   </div>
 
-  {#if isToggle}
+  {#if toggle}
     <div class="controls">
       <div class="progress">
         <span style:width={widthElapsed} class="elapsed" />
@@ -121,18 +121,18 @@
       </div>
     </div>
   {/if}
-</figure>
 
-{#if isToggle}
-  <div>
-    <button
-      class:censored
-      class="btn-censor"
-      style:left={leftCut}
-      on:click={onCensored}>{censoreText}</button
-    >
-  </div>
-{/if}
+  {#if toggle}
+    <div>
+      <button
+        class:censored
+        class="btn-censor"
+        style:left={leftCut}
+        on:click={onCensored}>{censoreText}</button
+      >
+    </div>
+  {/if}
+</figure>
 
 <style>
   figure {

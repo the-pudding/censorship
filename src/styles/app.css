@@ -100,8 +100,6 @@ article p {
 }
 
 figure {
-	background: white;
-	color: black;
 	margin: var(--64px) auto;
 }
 
