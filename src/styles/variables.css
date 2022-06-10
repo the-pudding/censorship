@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 06 Jun 2022 18:55:50 GMT
+ * Generated on Fri, 10 Jun 2022 18:54:45 GMT
  */
 
 :root {
@@ -24,10 +24,11 @@
   --color-gray-800: #373737;
   --color-gray-900: #262626;
   --color-gray-1000: #191919;
-  --color-orange: #ffb366;
-  --color-orange-dark: #603a20;
-  --color-green: #8cff66;
-  --color-blue: #66ccff;
+  --color-yellow: #e3b13e;
+  --color-green: #4fbbae;
+  --color-purple: #ae49a2;
+  --color-blue: #8aabfd;
+  --color-red: #ce4631;
   --12px: 0.75rem;
   --14px: 0.875rem;
   --16px: 1rem;

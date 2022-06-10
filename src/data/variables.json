@@ -22,10 +22,11 @@
     "gray-800": "rgb(55, 55, 55)",
     "gray-900": "rgb(38, 38, 38)",
     "gray-1000": "rgb(25, 25, 25)",
-    "orange": "#ffb366",
-    "orange-dark": "#603a20",
-    "green": "#8cff66",
-    "blue": "#6cf"
+    "yellow": "#e3b13e",
+    "green": "#4fbbae",
+    "purple": "#ae49a2",
+    "blue": "#8aabfd",
+    "red": "ce4631"
   },
   "": {
     "12px": "0.75rem",

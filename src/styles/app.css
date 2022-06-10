@@ -17,17 +17,17 @@
 	--z-overlay: 1000;
 
 	/* presets */
-	--border-radius: 2px;
+	--border-radius: 0;
 	--font-body: var(--sans);
 	--font-form: var(--sans);
 	--color-bg: var(--color-gray-800);
 	--color-fg: var(--color-gray-300);
   --color-link: var(--color-white);
-	--color-primary: var(--color-orange);
+	--color-primary: var(--color-yellow);
 	--color-secondary: var(--color-green);
 	--color-tertiary: var(--color-blue);
-  --color-focus: var(--color-orange);
-  --color-highlight: var(--color-orange);
+  --color-focus: var(--color-primary);
+  --color-highlight: var(--color-primary);
 	--color-border: var(--color-gray-300);
 	--color-selection: var(--color-gray-600);
 	--color-button-bg: var(--color-gray-700);
@@ -76,18 +76,22 @@ mark {
 	color: var(--color-gray-800);
 }
 
+a:hover {
+	color: var(--color-primary);
+}
+
 mark.cat-sex {
-	color: var(--color-orange);
+	color: var(--color-primary);
 	color: var(--color-gray-800);
 }
 
 mark.cat-relationships {
-	background-color: var(--color-green);
+	background-color: var(--color-secondary);
 	color: var(--color-gray-800);
 }
 
 mark.cat-politics {
-	background-color: var(--color-blue);
+	background-color: var(--color-tertiary);
 	color: var(--color-gray-800);
 }
 
