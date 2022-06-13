@@ -242,6 +242,11 @@
     display: block;
   }
 
+  video {
+    /* box-shadow: 16px 16px 0 0 var(--color-black); */
+    /* outline: 4px solid var(--color-primary); */
+  }
+
   :global(.btn-toggle svg) {
     display: block;
   }

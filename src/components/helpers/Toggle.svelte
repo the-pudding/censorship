@@ -18,7 +18,12 @@
 
 <div class="toggle toggle--{style}">
   <span class="label" {id}>{label}</span>
-  <button role="switch" aria-checked={checked} aria-labelledby={id} on:click={handleClick}>
+  <button
+    role="switch"
+    aria-checked={checked}
+    aria-labelledby={id}
+    on:click={handleClick}
+  >
     {#if style === "inner"}
       <span>{options[0]}</span>
       <span>{options[1]}</span>

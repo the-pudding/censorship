@@ -9,7 +9,11 @@
   const id = `legend-${Math.floor(Math.random() * 1000000)}`;
   const makeSlug = (str = "") => `${str}`.toLowerCase().replace(/\W/g, "");
 
-  $: optionsWithSlug = options.map((d) => ({ ...d, val: d.value, slug: makeSlug(d.value) }));
+  $: optionsWithSlug = options.map((d) => ({
+    ...d,
+    val: d.value,
+    slug: makeSlug(d.value)
+  }));
   $: isTop = legendPosition === "top";
 </script>
 
@@ -85,6 +89,8 @@
     font-family: inherit;
     font-size: 1em;
     display: inline-block;
+    width: 5em;
+    text-align: center;
   }
 
   .option + .option label {
@@ -110,8 +116,8 @@
 
   input[type="radio"]:checked + label,
   input[type="radio"]:checked:hover + label {
-    background: var(--color-gray-900);
-    color: var(--color-white);
+    background: var(--color-primary);
+    color: var(--color-bg);
   }
 
   input[type="radio"]:hover + label {
