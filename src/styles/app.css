@@ -36,6 +36,7 @@
 	--color-input-bg: var(--color-gray-100);
 	--color-input-fg: var(--color-gray-700);
 	--color-placeholder: var(--color-gray-500);
+	--color-text-outline: var(--color-bg);
 	
 	--col-width: 40rem;
 }

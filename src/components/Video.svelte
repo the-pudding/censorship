@@ -88,6 +88,7 @@
       bind:duration
       on:pause={onPause}
       on:play={onPlay}
+      controls
     >
       <track
         bind:this={trackEl}
