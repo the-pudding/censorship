@@ -1,13 +1,22 @@
 <script>
+  import { getContext } from "svelte";
   import Video from "$components/Video.svelte";
+
   export let clips;
-  // export let start;
-  // export let end;
+
+  const data = getContext("data");
+
   let censored = true;
+  let index = 0;
+
+  $: name = clips[index];
+  $: datum = data.find((d) => d.id === name);
+  $: start = datum.start;
+  $: stop = datum.stop;
 </script>
 
 <div>
-  <Video name={clips} start={4.1} end={9.3} toggle={true} bind:censored />
+  <Video {name} {start} {stop} toggle={true} bind:censored />
 </div>
 
 <style>

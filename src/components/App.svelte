@@ -10,6 +10,7 @@
   import Video from "$lib/components/Graphic.Video.svelte";
 
   const copy = getContext("copy");
+  const data = getContext("data");
   const components = { Toggle, Quote, Compare, Scroll, Video };
 </script>
 

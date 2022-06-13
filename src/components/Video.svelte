@@ -6,9 +6,9 @@
   export let toggle = false;
   export let censored = false;
   export let start = 0;
-  export let end = 0;
+  export let stop = 0;
 
-  const durationCut = end - start;
+  const durationCut = stop - start;
   const mid = durationCut / 2 + start;
   const scaleBefore = scaleLinear().domain([0, start]).range([0, mid]);
   const scaleAfter = scaleLinear();
@@ -48,7 +48,7 @@
   $: censoreText = censored ? "View original" : "View censored";
   $: toggleText = paused ? "Play video" : "Pause video";
 
-  $: scaleAfter.domain([end, duration]).range([mid, duration]);
+  $: scaleAfter.domain([stop, duration]).range([mid, duration]);
 
   // reset jumped when video truly restarts
   $: jumped = currentTime === 0 ? false : jumped;
@@ -67,7 +67,7 @@
   // jump past censored clip
   $: if (censored && !jumped && !paused && currentTime > start) {
     jumped = true;
-    videoEl.currentTime = end;
+    videoEl.currentTime = stop;
   }
 
   // replay video after switching version
@@ -107,6 +107,8 @@
       ><Icon name={buttonName} strokeWidth="1px" />
     </button>
   </div>
+
+  <div class="overlay" />
 
   {#if toggle}
     <div class="controls">
@@ -247,6 +249,35 @@
   :global(::cue) {
     color: var(--color-white);
     font: normal 1em var(--sans);
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: repeating-linear-gradient(
+        45deg,
+        #000 25%,
+        transparent 25%,
+        transparent 75%,
+        #000 75%,
+        #000
+      ),
+      repeating-linear-gradient(
+        45deg,
+        #000 25%,
+        transparent 25%,
+        transparent 75%,
+        #000 75%,
+        #000
+      );
+    background-position: 0 0, 2px 2px;
+    background-size: 4px 4px;
   }
 
   /* :global(::cue(v[voice="Russell"])) {

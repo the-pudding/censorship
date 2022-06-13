@@ -23,9 +23,9 @@
 	--color-bg: var(--color-gray-800);
 	--color-fg: var(--color-gray-300);
   --color-link: var(--color-white);
-	--color-primary: var(--color-yellow);
-	--color-secondary: var(--color-green);
-	--color-tertiary: var(--color-blue);
+	--color-primary: var(--color-green);
+	--color-secondary: var(--color-blue);
+	--color-tertiary: var(--color-yellow);
   --color-focus: var(--color-primary);
   --color-highlight: var(--color-primary);
 	--color-border: var(--color-gray-300);
