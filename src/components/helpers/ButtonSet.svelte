@@ -89,7 +89,7 @@
     font-family: inherit;
     font-size: 1em;
     display: inline-block;
-    width: 5em;
+    width: 2em;
     text-align: center;
   }
 
@@ -110,14 +110,13 @@
   }
 
   input[type="radio"] + label {
-    background: var(--color-button-fg);
-    color: var(--color-button-bg);
+    background: var(--color-button-bg);
+    color: var(--color-button-fg);
   }
 
   input[type="radio"]:checked + label,
   input[type="radio"]:checked:hover + label {
     background: var(--color-primary);
-    color: var(--color-button-bg);
   }
 
   input[type="radio"]:hover + label {

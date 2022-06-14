@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { scaleLinear } from "d3";
   import Icon from "$components/helpers/Icon.svelte";
 
@@ -8,19 +9,22 @@
   export let start = 0;
   export let stop = 0;
 
+  const src = `/assets/clips/${name}.mp4`;
+
   const durationCut = stop - start;
   const mid = durationCut / 2 + start;
   const scaleBefore = scaleLinear().domain([0, start]).range([0, mid]);
   const scaleAfter = scaleLinear();
 
   let videoEl;
-  let trackEl;
   let duration;
   let currentTime = 0;
   let paused = true;
   let jumped = false;
   let autoplay = false;
-  let captions = false;
+  let captioned = true;
+  let muted = false;
+  let loaded = false;
 
   const onCensored = () => {
     paused = true;
@@ -31,11 +35,13 @@
   };
 
   const onCaptions = () => {
-    captions = !captions;
-    trackEl.mode = "showing";
-    // for (var i = 0; i < videoEl.textTracks.length; i++) {
-    //   videoEl.textTracks[i].mode = captions ? "showing" : "hidden";
-    // }
+    captioned = !captioned;
+    videoEl.textTracks[0].mode = captioned ? "showing" : "hidden";
+  };
+
+  const onMute = () => {
+    muted = !muted;
+    videoEl.muted = muted;
   };
 
   const onPause = () => {
@@ -46,16 +52,18 @@
     paused = false;
   };
 
-  const onToggle = () => {
+  const onPlaypause = () => {
     if (paused) videoEl.play();
     else videoEl.pause();
   };
 
   const toPercent = (a, b = 1) => `${(a / b) * 100}%`;
 
-  $: buttonName = paused ? "play-circle" : "pause-circle";
+  $: playpauseIcon = paused ? "play-circle" : "pause-circle";
+  $: playpauseText = paused ? "Play video" : "Pause video";
   $: censoreText = censored ? "View original" : "View censored";
-  $: toggleText = paused ? "Play video" : "Pause video";
+  $: muteIcon = muted ? "volume-x" : "volume-2";
+  $: muteText = muted ? "Unmute video" : "Mute video";
 
   $: scaleAfter.domain([stop, duration]).range([mid, duration]);
 
@@ -86,12 +94,27 @@
   }
 
   $: playing = !paused;
+
+  onMount(() => {
+    const request = new XMLHttpRequest();
+    request.open("GET", src, true);
+
+    request.responseType = "blob";
+    request.onload = function () {
+      if (this.status === 200) {
+        const videoBlob = this.response;
+        const videoUrl = URL.createObjectURL(videoBlob);
+        videoEl.src = videoUrl;
+        loaded = true;
+      }
+    };
+    request.send();
+  });
 </script>
 
-<figure>
+<figure class:loaded>
   <div class="video-wrapper">
     <video
-      src="/assets/clips/{name}.mp4"
       bind:this={videoEl}
       bind:currentTime
       bind:duration
@@ -99,7 +122,6 @@
       on:play={onPlay}
     >
       <track
-        bind:this={trackEl}
         label="English"
         kind="captions"
         srclang="en"
@@ -108,40 +130,51 @@
       />
     </video>
 
-    <!-- <div class="overlay" /> -->
+    <div class="overlay" />
 
     <button
-      aria-label={toggleText}
-      class="btn-toggle"
+      aria-label={playpauseText}
+      class="btn-playpause"
       class:playing
-      on:click={onToggle}
-      ><Icon name={buttonName} strokeWidth="1px" />
+      on:click={onPlaypause}
+    >
+      <span>
+        <Icon name={playpauseIcon} strokeWidth="1px" />
+      </span>
     </button>
 
-    <button
-      aria-label="Closed Captions"
-      class="btn-captions"
-      class:captions
-      on:click={onCaptions}
-      >CC
-    </button>
+    <div class="controls">
+      <button
+        aria-label="Closed Captions"
+        class="btn-captions"
+        class:active={captioned}
+        on:click={onCaptions}
+        >CC
+      </button>
+
+      <button
+        aria-label={muteText}
+        class="btn-mute"
+        class:active={!muted}
+        on:click={onMute}
+        ><Icon name={muteIcon} strokeWidth="2px" />
+      </button>
+    </div>
   </div>
 
-  {#if toggle}
-    <div class="controls">
-      <div class="progress">
-        <span style:width={widthElapsed} class="elapsed" />
-        <span
-          style:width={widthCut}
-          style:left={leftCut}
-          class="cut"
-          class:censored>{Math.round(durationCut)}s</span
-        >
-      </div>
+  {#if toggle && !isNaN(duration)}
+    <div class="progress">
+      <span style:width={widthElapsed} class="elapsed" />
+      <span
+        style:width={widthCut}
+        style:left={leftCut}
+        class="cut"
+        class:censored>{Math.round(durationCut)}s</span
+      >
     </div>
   {/if}
 
-  {#if toggle}
+  {#if toggle && !isNaN(duration)}
     <div>
       <button
         class:censored
@@ -156,8 +189,30 @@
 <style>
   figure {
     position: relative;
-    margin: 0 auto;
-    max-width: var(--col-width);
+    min-height: var(--min-height, 200px);
+    visibility: hidden;
+    margin: 0;
+  }
+
+  figure.loaded {
+    visibility: visible;
+  }
+
+  .controls {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+  }
+
+  .controls button {
+    line-height: 1;
+    font-size: var(--16px);
+    margin-right: 4px;
+  }
+
+  .controls button.active {
+    background-color: var(--color-primary);
   }
 
   .progress {
@@ -219,52 +274,76 @@
     position: relative;
   }
 
+  :global(.video-wrapper svg) {
+    display: block;
+  }
+
   .btn-censor {
     position: absolute;
     top: 0;
     transform: translate(-50%, 50%);
     text-transform: uppercase;
     background-color: var(--color-primary);
-    color: var(--color-bg);
   }
 
   .btn-censor.censored {
-    background-color: var(--color-input-bg);
-    color: var(--color-bg);
+    background-color: var(--color-button-bg);
   }
 
-  .btn-toggle {
+  .btn-censor:hover {
+    background-color: var(--color-button-hover);
+  }
+
+  .btn-censor.censored:hover {
+    background-color: var(--color-button-hover);
+  }
+
+  .video-wrapper .btn-playpause {
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+    line-height: 1;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  .video-wrapper .btn-playpause span {
+    position: absolute;
+    display: block;
     top: 50%;
     left: 50%;
+    line-height: 1;
     transform: translate(-50%, -50%);
     font-size: var(--64px);
-    line-height: 1;
-    opacity: 0.5;
-    background: transparent;
+    width: 1em;
+    height: 1em;
     border-radius: 50%;
     padding: 0;
+    opacity: 0.5;
     text-align: center;
+    background: transparent;
+    color: var(--color-white);
+    transition: opacity 200ms ease-in-out;
   }
 
-  .btn-toggle:hover {
+  .btn-playpause:hover {
     opacity: 1;
   }
 
-  .btn-toggle.playing {
+  .btn-playpause span:hover {
+    opacity: 1;
+  }
+
+  .btn-playpause.playing {
     display: none;
   }
 
-  .video-wrapper:hover .btn-toggle.playing {
-    display: block;
-  }
-
-  video {
-    /* box-shadow: 16px 16px 0 0 var(--color-black); */
-    /* outline: 4px solid var(--color-primary); */
-  }
-
-  :global(.btn-toggle svg) {
+  .video-wrapper:hover .btn-playpause.playing {
     display: block;
   }
 
@@ -297,8 +376,19 @@
     background-size: 4px 4px;
   }
 
-  /* :global(::cue) {
+  video::cue {
+    /* background: linear-gradient(to right, var(--color-fg), var(--color-fg)); */
     color: var(--color-fg);
-    font: normal var(--20px) var(--sans);
-  } */
+    font-size: var(--20px);
+    font-family: var(--sans);
+    text-shadow: -1px -1px 1px var(--color-bg), -1px 0px 1px var(--color-bg),
+      -1px 1px 1px var(--color-bg), -1px -1px 0px var(--color-bg),
+      -1px 0px 0px var(--color-bg), 0px -1px 1px var(--color-bg),
+      0px -1px 0px var(--color-bg), 0px 1px 0px var(--color-bg),
+      0px 1px 1px var(--color-bg), 1px -1px 1px var(--color-bg),
+      1px -1px 0px var(--color-bg), 1px 0px 0px var(--color-bg),
+      1px 1px 0px var(--color-bg), 1px 1px 1px var(--color-bg),
+      1px 0px 1px var(--color-bg);
+    /* outline: 4px solid var(--color-fg); */
+  }
 </style>

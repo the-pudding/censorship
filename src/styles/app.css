@@ -30,9 +30,9 @@
   --color-highlight: var(--color-primary);
 	--color-border: var(--color-gray-300);
 	--color-selection: var(--color-gray-600);
-	--color-button-bg: var(--color-gray-700);
-	--color-button-fg: var(--color-gray-300);
-	--color-button-hover: var(--color-gray-700);
+	--color-button-bg: var(--color-gray-400);
+	--color-button-fg: var(--color-gray-1000);
+	--color-button-hover: var(--color-gray-300);
 	--color-input-bg: var(--color-gray-100);
 	--color-input-fg: var(--color-gray-700);
 	--color-placeholder: var(--color-gray-500);
@@ -118,12 +118,4 @@ figure {
 	article p {
 		--size: var(--28px);
 	}
-}
-
-video::cue {
-    background: linear-gradient(to right, var(--color-bg), var(--color-bg));
-    color: var(--color-primary);
-    font-size: var(--20px);
-    font-family: var(--sans);
-		outline: 4px solid var(--color-bg);
 }
