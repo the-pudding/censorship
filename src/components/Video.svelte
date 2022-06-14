@@ -297,8 +297,8 @@
     background-size: 4px 4px;
   }
 
-  :global(::cue) {
+  /* :global(::cue) {
     color: var(--color-fg);
     font: normal var(--20px) var(--sans);
-  }
+  } */
 </style>

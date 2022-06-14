@@ -119,3 +119,11 @@ figure {
 		--size: var(--28px);
 	}
 }
+
+video::cue {
+    background: linear-gradient(to right, var(--color-bg), var(--color-bg));
+    color: var(--color-primary);
+    font-size: var(--20px);
+    font-family: var(--sans);
+		outline: 4px solid var(--color-bg);
+}
