@@ -44,8 +44,7 @@
     padding-bottom: 3.25rem;
     max-width: var(--col-width);
     margin: 0 auto;
-    /* TODO dynamic */
-    min-height: 360px;
+    min-height: 200px;
   }
 
   .buttonset {

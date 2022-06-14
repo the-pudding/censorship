@@ -82,7 +82,7 @@ a:hover {
 }
 
 mark.cat-sex {
-	color: var(--color-primary);
+	background-color: var(--color-primary);
 	color: var(--color-gray-800);
 }
 

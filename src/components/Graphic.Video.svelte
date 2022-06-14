@@ -5,4 +5,14 @@
   $: name = clips[0];
 </script>
 
-<Video name={clips} />
+<div>
+  <Video name={clips} />
+</div>
+
+<style>
+  div {
+    max-width: var(--col-width);
+    margin: 0 auto;
+    min-height: 200px;
+  }
+</style>

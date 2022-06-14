@@ -1,7 +1,7 @@
 
 body {
-	background-color: var(--color-bg, black);
-  color: var(--color-fg, white);
+	background-color: var(--color-bg, white);
+  color: var(--color-fg, black);
 	line-height: 1.4;
 	font-family: var(--font-body, serif);
 	font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1;
@@ -21,7 +21,7 @@ p {
 }
 
 mark {
-  background-color: var(--color-highlight, yellow);
+  background-color: var(--color-mark, yellow);
   padding: 0 4px;
 }
 
@@ -39,7 +39,7 @@ video {
 input, textarea {
 	-webkit-appearance: none;
 	appearance: none;
-  background-color: var(--color-input-bg, white);
+  background-color: var(--color-input-bg, whitesmoke);
   color: var(--color-input-fg, black);
   border-radius: var(--border-radius, 0);
   border: none;
@@ -51,6 +51,7 @@ input, textarea {
 
 button,
 select,
+a[role="button"],
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
@@ -64,9 +65,11 @@ input[type="button"] {
   font-size: inherit;
   outline: none;
   padding: 8px;
+	text-decoration: none;
 }
 
 button,
+a[role="button"],
 input[type="button"],
 input[type="checkbox"],
 input[type="radio"],
@@ -85,28 +88,13 @@ select {
   display: inline-block;
 }
 
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover {
-  background: var(--color-button-hover, lightgray);
-}
-
 button:disabled,
+a[role="button"]:disabled,
 input[type="button"]:disabled,
 input[type="submit"]:disabled,
 input[type="reset"]:disabled {
   opacity: 0.5;
 	cursor: not-allowed;
-}
-
-button:disabled:hover,
-input[type="button"]:disabled:hover,
-input[type="submit"]:disabled:hover,
-input[type="reset"]:disabled:hover {
-  opacity: 0.5;
-	cursor: not-allowed;
-	background: var(--color-button-bg, lightgray);
 }
 
 input[type="range"] {
@@ -117,13 +105,15 @@ input[type="range"] {
 }
 
 button:focus,
+a[role="button"]:focus,
 input:focus,
 select:focus,
 textarea:focus {
-  box-shadow: 0 0 0 2px var(--color-focus, yellow);
+  box-shadow: 0 0 0 2px var(--color-focus, red);
 }
 
 button:disabled,
+a[role="button"]:disabled,
 input:disabled,
 select:disabled,
 textarea:disabled {
@@ -220,7 +210,6 @@ ol, ul {
 	width: 1px;
 }
 
-
 .text-outline {
 	text-shadow: -1px -1px 1px var(--color-text-outline, white),
 		-1px 0px 1px var(--color-text-outline, white),
@@ -237,4 +226,25 @@ ol, ul {
 		1px 1px 0px var(--color-text-outline, white),
 		1px 1px 1px var(--color-text-outline, white), 
 		1px 0px 1px var(--color-text-outline, white);     
+}
+
+/* desktop (mouse-enabled device) */
+@media (hover: hover) and (pointer: fine) {
+	button:hover,
+	a[role="button"]:hover,
+	input[type="button"]:hover,
+	input[type="submit"]:hover,
+	input[type="reset"]:hover {
+		background: var(--color-button-hover, lightgray);
+	}	
+
+	button:disabled:hover,
+	a[role="button"]:disabled:hover,
+	input[type="button"]:disabled:hover,
+	input[type="submit"]:disabled:hover,
+	input[type="reset"]:disabled:hover {
+		opacity: 0.5;
+		cursor: not-allowed;
+		background: var(--color-button-bg, lightgray);
+	}
 }
