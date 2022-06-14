@@ -1,24 +1,10 @@
 <script>
   import { getContext } from "svelte";
-  import { max, range, groups } from "d3";
+  import getEpisodes from "$data/getEpisodes.js";
 
   const data = getContext("data");
-  const maxSeconds = max(data, (d) => d.timeStop);
-  console.log(maxSeconds);
 
-  const episodeCount = 100;
-
-  const grouped = groups(data, (d) => d.index);
-
-  const getScenes = (index) => {
-    const match = grouped.find(([i]) => i === index);
-    return match ? match[1] : [];
-  };
-
-  const episodes = range(episodeCount).map((d, index) => ({
-    index,
-    scenes: getScenes(index)
-  }));
+  const episodes = getEpisodes(data);
 
   let lost = false;
 </script>
@@ -26,12 +12,16 @@
 <figure>
   {#each episodes as { index, scenes } (index)}
     {@const empty = !scenes.length}
-    <div data-index={index} class:empty>
-      {#each scenes as { timeStart, timeStop, type }}
-        {@const duration = timeStop - timeStart}
-        {@const width = `${(duration / maxSeconds) * 100}%`}
-        {@const left = `${(timeStart / maxSeconds) * 100}%`}
-        <span style:width style:left class={type} class:lost />
+    <div class:empty>
+      {#each scenes as { width, left, type, targetY, targetX }}
+        <span
+          data-tx={targetX}
+          data-ty={targetY}
+          style:width
+          style:left
+          class={type}
+          class:lost
+        />
       {/each}
     </div>
   {/each}
@@ -39,15 +29,14 @@
 
 <style>
   figure {
+    --height: 7px;
     position: sticky;
     top: 2rem;
     left: 0;
     width: 90%;
-    max-width: 1280px;
   }
 
   div {
-    --height: 7px;
     position: relative;
     background: var(--color-gray-700);
     height: var(--height);
@@ -75,7 +64,6 @@
     position: absolute;
     top: 0;
     height: calc(var(--height) - 1px);
-    background: var(--color-gray-500);
     min-width: 2px;
     transition: opacity;
   }
@@ -84,15 +72,19 @@
     opacity: 0;
   }
 
-  :global(span.sex) {
+  :global(figure span) {
+    background: var(--color-gray-500);
+  }
+
+  :global(figure span.sex) {
     background: var(--color-primary);
   }
 
-  :global(span.disrespect) {
+  :global(figure span.disrespect) {
     background: var(--color-secondary);
   }
 
-  :global(span.non-heteronormative-relationship) {
+  :global(figure span.non-heteronormative-relationship) {
     background: var(--color-tertiary);
   }
 </style>

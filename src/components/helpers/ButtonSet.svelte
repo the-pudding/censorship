@@ -83,7 +83,7 @@
     margin: 0;
     padding: 0.5em;
     border-radius: 0;
-    border: 2px solid var(--color-gray-900);
+    border: 2px solid var(--color-bg);
     outline: none;
     cursor: pointer;
     font-family: inherit;
@@ -98,11 +98,11 @@
   }
 
   .option:first-of-type label {
-    border-radius: 4px 0 0 4px;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
   }
 
   .option:last-of-type label {
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
 
   .option + .option > label {
@@ -110,14 +110,14 @@
   }
 
   input[type="radio"] + label {
-    background: var(--color-white);
-    color: var(--color-gray-900);
+    background: var(--color-button-fg);
+    color: var(--color-button-bg);
   }
 
   input[type="radio"]:checked + label,
   input[type="radio"]:checked:hover + label {
     background: var(--color-primary);
-    color: var(--color-bg);
+    color: var(--color-button-bg);
   }
 
   input[type="radio"]:hover + label {

@@ -20,6 +20,7 @@
   let paused = true;
   let jumped = false;
   let autoplay = false;
+  let captions = false;
 
   const onCensored = () => {
     paused = true;
@@ -27,6 +28,14 @@
     videoEl.currentTime = 0;
     censored = !censored;
     autoplay = true;
+  };
+
+  const onCaptions = () => {
+    captions = !captions;
+    trackEl.mode = "showing";
+    // for (var i = 0; i < videoEl.textTracks.length; i++) {
+    //   videoEl.textTracks[i].mode = captions ? "showing" : "hidden";
+    // }
   };
 
   const onPause = () => {
@@ -82,23 +91,24 @@
 <figure>
   <div class="video-wrapper">
     <video
-      src="assets/clips/{name}.mp4"
+      src="/assets/clips/{name}.mp4"
       bind:this={videoEl}
       bind:currentTime
       bind:duration
       on:pause={onPause}
       on:play={onPlay}
-      controls
     >
       <track
         bind:this={trackEl}
         label="English"
         kind="captions"
         srclang="en"
-        src="assets/captions/{name}.vtt"
+        src="/assets/captions/{name}.vtt"
         default
       />
     </video>
+
+    <!-- <div class="overlay" /> -->
 
     <button
       aria-label={toggleText}
@@ -107,9 +117,15 @@
       on:click={onToggle}
       ><Icon name={buttonName} strokeWidth="1px" />
     </button>
-  </div>
 
-  <div class="overlay" />
+    <button
+      aria-label="Closed Captions"
+      class="btn-captions"
+      class:captions
+      on:click={onCaptions}
+      >CC
+    </button>
+  </div>
 
   {#if toggle}
     <div class="controls">
@@ -252,11 +268,6 @@
     display: block;
   }
 
-  :global(::cue) {
-    color: var(--color-white);
-    font: normal 1em var(--sans);
-  }
-
   .overlay {
     position: absolute;
     top: 0;
@@ -286,8 +297,8 @@
     background-size: 4px 4px;
   }
 
-  /* :global(::cue(v[voice="Russell"])) {
-    color: #fff;
-    background: #0095dd;
-  } */
+  :global(::cue) {
+    color: var(--color-fg);
+    font: normal var(--20px) var(--sans);
+  }
 </style>

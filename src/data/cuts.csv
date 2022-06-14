@@ -7,18 +7,18 @@ id,index,season,episode,cut_seconds,cut_start,cut_stop,clip_start,clip_stop,cut_
 6,8,1,8,2,9:45,9:47,,,"RAJ: But with a penis, of course.",sex,body-part,,,,3
 7,10,1,10,6,18:20,18:26,,,"LEO: What choice did he have but to drink, shoot and snort his pain away?",unhealthy-addiction,drugs,,,,8
 8,12,1,12,3,1:12,1:15,,,KIM: I lost a year when my family was tunneling out of North Korea.,disrespect,north-korea,,,,1
-9,12,1,12,8,1:48,1:56,00:05.00,00:13.01,Dean: And we welcome your input on our research goals. And we've agreed to look the other way if you want to use up to 20% of the grant money you attract to smuggle your grandfather out of Pyongyang.,disrespect,north-korea,,,,1
+9,12,1,12,8,1:48,1:56,00:05.05,00:13.20,Dean: And we welcome your input on our research goals. And we've agreed to look the other way if you want to use up to 20% of the grant money you attract to smuggle your grandfather out of Pyongyang.,disrespect,north-korea,,,,1
 10,12,1,12,10,11:02,11:12,,,RAJ: We can't send him back to North Korea. He knows how to get out. | HOWARD: The only thing we need to do is make this kid lose his focus.,disrespect,north-korea,,,,1
 11,12,1,12,39,18:58,19:37,,,"HOWARD: Unbelievable. The components I built are on the international space station and I get a ticket for launching a model rocket in the park. | LEONARD: I don't know if the ticket is so much to the launch as was for you telling the policewoman ""you have to frisk me, I have another rocket in my pants."" | RAJ: Hey look that. It's Dennis Kim. | HOWARD: Wow, I almost didn't recognize him. | RAJ: you know. I kind of feel bad about what we did to him. | LEONARD: Yeah, we really ruined his life. | SHELDON: Screw him--he was weak.",sex,sexual-description,,,,3
 12,13,1,13,9,0:32,0:41,,,"RAJ: How come on Star Trek, everybody's private parts are the same? No alien lady ever told captain Kirk, ""hey, get your thing out of my nose.""",sex,sexual-description,,,,3
 13,13,1,13,10,2:47,2:57,,,"HOWARD: It's beyond the laws of physics, plus a little heads-up for the ladies. | LEONARD: The ladies? | HOWARD: ""perpetual motion squad-- we can go all night.""",sex,sexual-description,,,,3
 14,14,1,14,6,12:19,12:25,00:08.03,00:15.14,"SHELDON: In back to the future, Marty McFly got the opportunity to hook up with his extremely attractive young mother.",non-heteronormative-relationship,mother-issue,,,,5
-15,14,1,14,4,17:25,17:29,00:02.15,00:07.04,"HOWARD: I guess that makes me ""large breasts.""",sex,body-part,,,,3
+15,14,1,14,4,17:25,17:29,00:01.18,00:07.04,"HOWARD: I guess that makes me ""large breasts.""",sex,body-part,,,,3
 16,15,1,15,8,1:52,2:00,,,MISSY: Oh he once spent nine months with my legs wrapped around his head. | LEONARD: Excuse me?,sex,sexual-description,,,,3
 17,15,1,15,4,13:08,13:12,,,HOWARD: Is it because I am Jewish? Cause I'd kill my rabbi with a pork chop to be with your sister.,religion,,,,,6
 18,15,1,15,10,16:01,16:11,,,"SHELDON: You donate eggs. We will place them in cryogenic storage. I will find an appropriate sperm donor for your eggs, have them fertilized and implanted in you. That way, everybody wins.",illegal,,,,,9
 19,15,1,15,4,20:08,20:12,,,MISSY: We had a dog who made a noise like that. Had to put him down.,illegal,,,,,7
-20,15,1,15,3,20:34,20:37,00:01.16,00:04.16,SHELDON: Other than that business with my testicles.,sex,body-part,,,,3
+20,15,1,15,3,20:34,20:37,00:03.00,00:06.09,SHELDON: Other than that business with my testicles.,sex,body-part,,,,3
 21,16,1,16,25,4:12,4:37,,,"HOWARD: I suppose that's possible, but for the record, I've never had a threesome, and yet I still know I want one. | PENNY: Here's the difference -- the possibility exists that. | LEONARD could have a birthday party before hell freezes over. | HOWARD: Fine, if I do have a threesome, you can't be part of it. I am just kidding. yes, you can. Can you bring a friend?",sex,sexual-description,"""threesome""",,,3
 22,17,1,17,14,0:51,1:05,00:08.03,00:23.25,"LEONARD: Why are you learning Chinese? | SHELDON: I believe the Szechuan palace has been passing off Orange chicken as tangerine chicken and I intend to confront them. | LEONARD: If I were you, I'd be more concerned about what they are passing off as chicken.",disrespect,china,,,,1
 23,17,1,17,8,7:39,7:47,,,"HOWARD: For god sake Sheldon, if you don't like the tangerine chicken, don't order the tangerine chicken. | SHELDON: I like tangerine chicken. I'm just not getting tangerine chicken.",not-sure-why,,,,,
@@ -76,8 +76,8 @@ id,index,season,episode,cut_seconds,cut_start,cut_stop,clip_start,clip_stop,cut_
 75,42,3,2,5,1:49,1:54,,,HOWARD: Sex is never the way I dream it's gonna be.,sex,sexual-description,,,,3
 76,43,3,3,6,6:03,6:09,,,LEONARD: Why are you carrying extras? | HOWARD: In case I snag one on someone's nipple ring.,sex,body-part,,,,3
 77,43,3,3,13,18:10,18:23,,,SHELDON: Sex works even better than chocolate to modify behavior. I wonder if anyone else has stumbled onto that.,sex,sexual-description,,,,3
-78,46,3,6,5,8:58,9:03,00:11.08,00:16.15,SHELDON: Most Texans believe it to be a Commie plot.,disrespect,communist,,,,2
-79,47,3,7,11,1:41,1:52,00:02.12,00:16.13,"LEONARD: So by ""friend,"" do you mean ""friend friend,"" ""gay friend,"" or ""ex-boyfriend who you are now platonic with but still might have a thing for you friend""? | PENNY: Well, he's definitely not gay. | LEONARD: oh, ho-ho, a definitely not gay musician…",non-heteronormative-relationship,homosexual,,,,9
+78,46,3,6,5,8:58,9:03,00:12.14,00:16.15,SHELDON: Most Texans believe it to be a Commie plot.,disrespect,communist,,,,2
+79,47,3,7,11,1:41,1:52,00:02.12,00:16.09,"LEONARD: So by ""friend,"" do you mean ""friend friend,"" ""gay friend,"" or ""ex-boyfriend who you are now platonic with but still might have a thing for you friend""? | PENNY: Well, he's definitely not gay. | LEONARD: oh, ho-ho, a definitely not gay musician…",non-heteronormative-relationship,homosexual,,,,9
 80,47,3,7,3,4:54,4:57,,,LEONARD: An old boyfriend who's definitely not gay.,non-heteronormative-relationship,homosexual,,,,9
 81,48,3,8,8,0:30,0:38,,,"HOWARD: Woo, Real Sex. | RAJ: Big deal. Every time I watch that show, it's old women putting condoms on cucumbers.",sex,sexual-description,,,,3
 82,48,3,8,6,1:02,1:08,,,"HOWARD: Oh, this sucks. I'm switching back to Real Sex.",sex,sexual-description,,,,3
@@ -106,7 +106,7 @@ id,index,season,episode,cut_seconds,cut_start,cut_stop,clip_start,clip_stop,cut_
 105,55,3,15,2,9:57,9:59,00:07.10,00:10.00,RAJ: … and your penis would droop like a willow tree.,sex,body-part,,,,3
 106,56,3,16,13,4:07,4:20,00:11.09,00:24.09,"PENNY: Um…uh, Stan Lee. Ooh, he was in those goofy kung fu movies you love so much? | LEONARD: That's Bruce Lee. | PENNY: Ohh. So, is this Bruce Lee's nerdy brother, Stan?",disrespect,china,,,,1
 107,56,3,16,11,8:15,8:26,,,"SHELDON: Please try to wear something appropriate. It won't help my case if the judge is busy trying to read the word ""juicy"" scrawled across your buttocks.",sex,body-part,,,,3
-108,56,3,16,5,10:14,10:19,00:10.01,00:14.07,"SHELDON: Maybe you should put on your ""juicy"" pants again.",sex,sexual-description,,,,3
+108,56,3,16,5,10:14,10:19,00:10.01,00:13.25,"SHELDON: Maybe you should put on your ""juicy"" pants again.",sex,sexual-description,,,,3
 109,57,3,17,13,1:04,1:17,,,"SHELDON: Leonard, what do the two of you talk about after the coitus? | HOWARD: My guess is, ""Hey, four minutes! New record!"" That's why I am the funny one.",sex,sexual-description,"""coitus""",,,3
 110,57,3,17,10,15:02,15:12,,,"RAJ: I am so glad we came to this gentile strip club! Howard, here's more bacon to tuck into the shiksa's G-string!",sex,sexual-description,,,,3
 111,58,3,18,22,0:00,0:22,,,"RAJ: Okay, in Avatar, when they have sex in Pandora, they hook up their ponytails, so we know their ponytails are their junk. | HOWARD: Yeah… so? | RAJ: So when they ride horses and fly on the birds, they also use their ponytails. | HOWARD: What's your point? | RAJ: My point is, if I were a horse or a bird, I'd be very nervous around James Cameron.",sex,body-part,,,,3
@@ -170,7 +170,7 @@ id,index,season,episode,cut_seconds,cut_start,cut_stop,clip_start,clip_stop,cut_
 169,83,4,20,14,15:44,15:58,,,RAJ: How did that even happen? Did they know that's what they were doing when they were doing it? | PENNY: I-I guess they just figured it out at some point. | RAJ: I can't believe old smelly pooper finally got laid.,sex,sexual-description,,,,3
 170,84,4,21,6,10:00,10:06,,,"AMY: Give me some sugar, bestie.",non-heteronormative-relationship,homosexual,,TRUE,an implication of girl kissing,9
 171,85,4,22,4,1:47,1:51,,,"PENNY: Of course, if I buy them, I will have to rent my womb out to a gay couple.",non-heteronormative-relationship,homosexual,,,,9
-172,85,4,22,5,6:17,6:22,00:04.25,00:10.01,RAJ: I'd rather get a prostate exam from a leper who walks away with nine fingers.,non-heteronormative-relationship,homosexual,,,,9
+172,85,4,22,5,6:17,6:22,00:04.25,00:10.06,RAJ: I'd rather get a prostate exam from a leper who walks away with nine fingers.,non-heteronormative-relationship,homosexual,,,,9
 173,85,4,22,13,18:02,18:15,,,RAJ: She never even got to see my penis. Ta-da!,sex,body-part,,,,3
 174,86,4,23,6,3:34,3:40,,,"LEONARD: Water nymph. | RAJ: Oh yeah, she's got puddles in all the right places.",sex,sexual-description,,,,3
 175,86,4,23,24,11:29,11:53,,,"BERNADETTE: You mean sexual intercoure? | HOWARD: Well, when you say it like that, you make it sound creepy. | PRIYA: What happened? | BERNADETTE: Howard's mother had a heart attack because I have sex with him and she can't. | HOWARD: Bernie, wait! | SHELDON: I'll give you $1,000 if you will drive me home.",sex,sexual-description,,,,3
