@@ -15,6 +15,7 @@ const data = rawData.map(d => ({
 	stop: toSeconds(d.clip_stop),
 	timeStart: toSeconds(d.cut_start),
 	timeStop: toSeconds(d.cut_stop),
+	lineNumber: d.cut_line,
 	type: d.type,
 	guideline: +d.guideline_no
 }));

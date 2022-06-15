@@ -9,7 +9,7 @@
   let lost = false;
 </script>
 
-<figure>
+<figure id="scroll">
   {#each episodes as { index, scenes } (index)}
     {@const empty = !scenes.length}
     <div class:empty>
@@ -72,19 +72,19 @@
     opacity: 0;
   }
 
-  :global(figure span) {
+  :global(#scroll span) {
     background: var(--color-gray-500);
   }
 
-  :global(figure span.sex) {
+  :global(#scroll span.sex) {
     background: var(--color-primary);
   }
 
-  :global(figure span.disrespect) {
+  :global(#scroll span.disrespect) {
     background: var(--color-secondary);
   }
 
-  :global(figure span.non-heteronormative-relationship) {
+  :global(#scroll span.non-heteronormative-relationship) {
     background: var(--color-tertiary);
   }
 </style>
