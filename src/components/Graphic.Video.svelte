@@ -6,7 +6,7 @@
 </script>
 
 <div>
-  <Video name={clips} />
+  <Video name={clips} captioned={false} />
 </div>
 
 <style>

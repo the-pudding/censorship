@@ -6,6 +6,7 @@
   export let name;
   export let toggle = false;
   export let censored = false;
+  export let captioned = true;
   export let start = 0;
   export let stop = 0;
 
@@ -22,9 +23,8 @@
   let paused = true;
   let jumped = false;
   let autoplay = false;
-  let captioned = true;
-  let muted = false;
   let loaded = false;
+  let muted = false;
 
   const onCensored = () => {
     paused = true;
