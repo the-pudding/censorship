@@ -14,6 +14,7 @@
 </script>
 
 <article>
+  <Title />
   {#each copy.sections as { id, chunks }}
     <section {id}>
       {#each chunks as { type, text, component, clips, steps }}

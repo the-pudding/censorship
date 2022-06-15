@@ -26,8 +26,8 @@
 	--color-primary: var(--color-green);
 	--color-secondary: var(--color-blue);
 	--color-tertiary: var(--color-yellow);
-  --color-focus: var(--color-primary);
-  --color-highlight: var(--color-primary);
+  --color-focus: var(--color-white);
+  --color-mark: var(--color-primary);
 	--color-border: var(--color-gray-300);
 	--color-selection: var(--color-gray-600);
 	--color-button-bg: var(--color-gray-400);
@@ -108,6 +108,15 @@ figure {
 	margin: var(--64px) auto;
 }
 
+button {
+	font-weight: bold;
+}
+
+mark {
+	position: relative;
+}
+
+
 @media only screen and (min-width: 30rem) {
 	article p {
 		--size: var(--24px);
@@ -119,3 +128,4 @@ figure {
 		--size: var(--28px);
 	}
 }
+

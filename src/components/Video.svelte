@@ -157,7 +157,7 @@
         class="btn-mute"
         class:active={!muted}
         on:click={onMute}
-        ><Icon name={muteIcon} strokeWidth="2px" />
+        ><Icon name={muteIcon} strokeWidth="3px" />
       </button>
     </div>
   </div>
@@ -345,6 +345,10 @@
 
   .video-wrapper:hover .btn-playpause.playing {
     display: block;
+  }
+
+  .btn-playpause:focus {
+    opacity: 1;
   }
 
   .overlay {

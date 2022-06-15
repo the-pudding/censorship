@@ -7,23 +7,23 @@
   let clean = [];
 
   onMount(async () => {
-    clean = await cleanQuotes({ data, clips });
+    clean = await cleanQuotes({ data, clips: clips.slice(0, 1) });
   });
 </script>
 
 <figure>
   {#each clean as { id, lines, lineIndex }}
-    <blockquote class="text-outline">
+    <blockquote>
       <div class="bg" style="background-image: url(/assets/images/{id}.png);" />
-      <p class="context">
+      <p class="context text-outline">
         <span>{lines[lineIndex - 1].speaker}</span>{lines[lineIndex - 1].text}
       </p>
 
-      <p class="censored">
+      <p class="censored text-outline">
         <span>{lines[lineIndex].speaker}</span>{@html lines[lineIndex].text}
       </p>
 
-      <p class="context">
+      <p class="context text-outline">
         <span>{lines[lineIndex + 1].speaker}</span>{lines[lineIndex + 1].text}
       </p>
     </blockquote>
@@ -50,12 +50,14 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   p {
     display: block;
     position: relative;
+    margin: 0;
+    padding: 16px 0;
   }
 
   p.context {
@@ -63,6 +65,7 @@
   }
 
   p.censored {
+    --stroke-width: 2px;
     font-size: var(--64px);
     line-height: 1.1;
     color: var(--color-white);

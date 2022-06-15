@@ -50,7 +50,6 @@
 <style>
   .button-set {
     display: inline-block;
-    margin-bottom: 4px;
   }
 
   .group {
@@ -80,10 +79,9 @@
     appearance: none;
     user-select: none;
     line-height: 1;
-    margin: 0;
     padding: 0.5em;
     border-radius: 0;
-    border: 2px solid var(--color-bg);
+    margin: 1px;
     outline: none;
     cursor: pointer;
     font-family: inherit;
@@ -112,6 +110,7 @@
   input[type="radio"] + label {
     background: var(--color-button-bg);
     color: var(--color-button-fg);
+    font-weight: bold;
   }
 
   input[type="radio"]:checked + label,
@@ -124,7 +123,7 @@
   }
 
   input[type="radio"]:focus + label {
-    box-shadow: 0 0 4px 0 var(--color-focus);
+    outline: 1px solid var(--color-focus);
   }
 
   input[type="radio"]:disabled + label {
