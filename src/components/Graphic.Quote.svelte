@@ -7,90 +7,108 @@
 
   const data = getContext("data");
   let clean = [];
-  let scrollIndex = 0;
   let showContext = [];
+  let scrollIndex = 0;
+  let count = 0;
+
+  $: height = `${500}px`;
+  $: scrollIndex = scrollIndex || 0;
+  $: shift = `${scrollIndex * -16}px`;
 
   onMount(async () => {
     clean = await cleanQuotes({ data, clips });
     showContext = clean.map(() => false);
+    count = clean.length;
   });
 </script>
 
-<figure>
-  {#each clean as { id, lines, lineIndex }, i}
-    {@const before = lines[lineIndex - 1]}
-    {@const censored = lines[lineIndex]}
-    {@const after = lines[lineIndex + 1]}
-    {@const active = scrollIndex === i}
-    {@const completed = scrollIndex > i}
-    {@const z = scrollIndex - i}
-    {@const sc = showContext[i]}
-    <blockquote
-      class:active
-      class:completed
-      class:show-context={sc}
-      style="--i: {i}; --z: {z}"
-    >
-      <div class="bg" style="background-image: url(/assets/images/{15}.png);" />
-      <p class="context text-outline">
-        <span>{before.speaker}</span>{before.text}
-      </p>
-
-      <p class="censored text-outline">
-        <span>{censored.speaker}</span>{@html censored.text}
-      </p>
-
-      <p class="context text-outline">
-        <span>{after.speaker}</span>{after.text}
-      </p>
-
-      <button aria-label="Show Context" on:click={() => (showContext[i] = !sc)}
-        ><Icon name={sc ? "eye" : "eye-off"} /></button
+<div
+  class="wrapper"
+  style="--height: {height}; --count: {count}; --shift: {shift};"
+>
+  <figure>
+    {#each clean as { id, lines, lineIndex }, i}
+      {@const before = lines[lineIndex - 1]}
+      {@const censored = lines[lineIndex]}
+      {@const after = lines[lineIndex + 1]}
+      {@const completed = scrollIndex > i}
+      {@const z = count - i}
+      {@const sc = showContext[i]}
+      <blockquote
+        class:completed
+        class:show-context={sc}
+        style="--i: {i}; --z: {z}"
       >
-    </blockquote>
-  {/each}
-</figure>
+        <div
+          class="bg"
+          style="background-image: url(/assets/images/{15}.png);"
+        />
+        <p class="context text-outline">
+          <span>{before.speaker}</span>{before.text}
+        </p>
 
-{#if clean.length}
-  <div class="steps">
-    <Scrolly bind:value={scrollIndex}>
-      {#each clean as { id }, i}
-        <div class="step" />
-      {/each}
-    </Scrolly>
-  </div>
-{/if}
+        <p class="censored text-outline">
+          <span>{censored.speaker}</span>{@html censored.text}
+        </p>
+
+        <p class="context text-outline">
+          <span>{after.speaker}</span>{after.text}
+        </p>
+
+        <button
+          aria-label="Show Context"
+          on:click={() => (showContext[i] = !sc)}
+          ><Icon name={sc ? "eye" : "eye-off"} /></button
+        >
+      </blockquote>
+    {/each}
+  </figure>
+
+  {#if count}
+    <div class="steps">
+      <Scrolly bind:value={scrollIndex}>
+        {#each clean as { id }, i}
+          <div class="step" />
+        {/each}
+      </Scrolly>
+    </div>
+  {/if}
+</div>
 
 <style>
   figure {
+    --pad: 16px;
     position: sticky;
-    top: 0;
+    top: 64px;
     left: 0;
-    height: 564px;
-    /* background: green; */
+    height: var(--height);
+    background: green;
   }
 
   blockquote {
     --offset: calc(var(--i) * 16px);
     position: absolute;
     background: var(--color-bg);
-    top: 64px;
+    top: 0;
     left: 50%;
-    height: 500px;
+    height: var(--height);
     max-width: var(--col-width);
-    margin: 1rem auto;
+    margin: 0 auto;
     padding: 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transform: translate(calc(-50% + var(--offset)), var(--offset));
+    transform: translate(
+      calc(-50% + var(--offset) + var(--shift)),
+      calc(var(--offset) + var(--shift))
+    );
     outline: 2px solid var(--color-primary);
     z-index: var(--z);
-    transition: top 500ms ease-in-out;
+    transition: top 0.5s ease-in-out, transform 0.5s ease-in-out;
   }
 
   blockquote.completed {
-    top: -200%;
+    top: calc((var(--height) + (var(--count) * var(--pad))) * -1);
   }
 
   .bg {
@@ -105,6 +123,42 @@
     opacity: 0.5;
   }
 
+  .bg:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+    background-image: repeating-linear-gradient(
+        45deg,
+        #000 25%,
+        transparent 25%,
+        transparent 75%,
+        #000 75%,
+        #000
+      ),
+      repeating-linear-gradient(
+        45deg,
+        #000 25%,
+        transparent 25%,
+        transparent 75%,
+        #000 75%,
+        #000
+      );
+    background-position: 0 0, 2px 2px;
+    background-size: 4px 4px;
+  }
+
+  .show-context .bg {
+    opacity: 0.25;
+  }
+
+  .show-context .bg:after {
+    opacity: 0.5;
+  }
+
   p {
     display: block;
     position: relative;
@@ -114,7 +168,7 @@
 
   p.context {
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
     font-size: var(--18px);
   }
 
@@ -153,17 +207,18 @@
 
   .steps {
     position: relative;
-    opacity: 0.5;
-    margin-top: -250px;
+    opacity: 1;
+    margin-top: calc((var(--height)) * -0.5 - 64px);
     pointer-events: none;
   }
 
   .step {
-    height: 50vh;
+    height: var(--height);
     background: red;
-    opacity: 0;
-    border: 2px solid white;
+    opacity: 1;
+    outline: 2px solid white;
     pointer-events: none;
+    width: 100px;
     /* visibility: hidden; */
   }
 </style>
