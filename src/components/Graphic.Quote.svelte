@@ -7,38 +7,55 @@
   let clean = [];
 
   onMount(async () => {
-    clean = await cleanQuotes({ data, clips: clips.slice(0, 1) });
+    clean = await cleanQuotes({ data, clips });
+    console.log(clean);
   });
 </script>
 
 <figure>
-  {#each clean as { id, lines, lineIndex }}
-    <blockquote>
-      <div class="bg" style="background-image: url(/assets/images/{id}.png);" />
+  {#each clean as { id, lines, lineIndex }, i}
+    {@const before = lines[lineIndex - 1]}
+    {@const censored = lines[lineIndex]}
+    {@const after = lines[lineIndex + 1]}
+    <blockquote style="--i: {i}; --z: {clean.length - i}">
+      <div class="bg" style="background-image: url(/assets/images/{15}.png);" />
       <p class="context text-outline">
-        <span>{lines[lineIndex - 1].speaker}</span>{lines[lineIndex - 1].text}
+        <span>{before.speaker}</span>{before.text}
       </p>
 
       <p class="censored text-outline">
-        <span>{lines[lineIndex].speaker}</span>{@html lines[lineIndex].text}
+        <span>{censored.speaker}</span>{@html censored.text}
       </p>
 
       <p class="context text-outline">
-        <span>{lines[lineIndex + 1].speaker}</span>{lines[lineIndex + 1].text}
+        <span>{after.speaker}</span>{after.text}
       </p>
     </blockquote>
   {/each}
 </figure>
 
 <style>
+  figure {
+    position: relative;
+    height: 100vh;
+  }
+
   blockquote {
+    --offset: calc(var(--i) * 16px);
+    position: absolute;
+    background: var(--color-bg);
+    top: 0;
+    left: 50%;
+    height: 500px;
     max-width: var(--col-width);
     margin: 1rem auto;
     padding: 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
+    transform: translate(calc(-50% + var(--offset)), var(--offset));
+    outline: 2px solid var(--color-primary);
+    z-index: var(--z);
   }
 
   .bg {
