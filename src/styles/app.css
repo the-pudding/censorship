@@ -128,9 +128,11 @@ mark {
 aside {
 	font-size: var(--20px);
 	max-width: var(--col-width);
-	margin: 0 auto;
-	background: var(--color-fg);
-	color: var(--color-bg);
+	margin: 32px auto;
+	/* background: var(--color-black); */
+	/* color: var(--color-gray-400); */
+	border: 2px solid var(--color-fg);
+	line-height: 1.5;
 	padding: 16px;
 }
 
