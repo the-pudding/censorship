@@ -43,17 +43,22 @@
           class="bg"
           style="background-image: url(/assets/images/{15}.png);"
         />
-        <p class="context text-outline">
-          <span>{before.speaker}</span>{before.text}
-        </p>
+
+        {#if before}
+          <p class="context text-outline">
+            <span>{before.speaker}</span>{before.text}
+          </p>
+        {/if}
 
         <p class="censored text-outline">
           <span>{censored.speaker}</span>{@html censored.text}
         </p>
 
-        <p class="context text-outline">
-          <span>{after.speaker}</span>{after.text}
-        </p>
+        {#if after}
+          <p class="context text-outline">
+            <span>{after.speaker}</span>{after.text}
+          </p>
+        {/if}
 
         <button
           aria-label="Show Context"
@@ -82,7 +87,7 @@
     top: 64px;
     left: 0;
     height: var(--height);
-    background: green;
+    /* background: green; */
   }
 
   blockquote {
@@ -121,6 +126,7 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
     opacity: 0.5;
+    transition: all 250ms;
   }
 
   .bg:after {
@@ -149,6 +155,7 @@
       );
     background-position: 0 0, 2px 2px;
     background-size: 4px 4px;
+    transition: all 250ms;
   }
 
   .show-context .bg {
@@ -174,7 +181,7 @@
 
   p.censored {
     --stroke-width: 2px;
-    font-size: var(--56px);
+    font-size: var(--48px);
     line-height: 1.1;
     color: var(--color-white);
     font-weight: bold;

@@ -83,16 +83,25 @@ a:hover {
 
 mark.cat-sex {
 	background-color: var(--color-primary);
+	box-shadow: -4px 0px 0px var(--color-primary), 4px 0px 0px var(--color-primary);
+	padding: 0;
+	margin: 0 6px;
 	color: var(--color-gray-800);
 }
 
 mark.cat-relationships {
 	background-color: var(--color-secondary);
+	box-shadow: -4px 0px 0px var(--color-secondary), 4px 0px 0px var(--color-secondary);
+	padding: 0;
+	margin: 0 6px;
 	color: var(--color-gray-800);
 }
 
 mark.cat-politics {
 	background-color: var(--color-tertiary);
+	box-shadow: -4px 0px 0px var(--color-tertiary), 4px 0px 0px var(--color-tertiary);
+	padding: 0;
+	margin: 0 6px;
 	color: var(--color-gray-800);
 }
 
