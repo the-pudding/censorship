@@ -41,7 +41,7 @@
       >
         <div
           class="bg"
-          style="background-image: url(/assets/images/{15}.png);"
+          style="background-image: url(assets/images/{15}.png);"
         />
 
         {#if before}
