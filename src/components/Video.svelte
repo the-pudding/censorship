@@ -125,7 +125,7 @@
         label="English"
         kind="captions"
         srclang="en"
-        src="/assets/captions/{name}.vtt"
+        src="assets/captions/{name}.vtt"
         default
       />
     </video>
