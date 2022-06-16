@@ -72,8 +72,9 @@
   {#if count}
     <div class="steps">
       <Scrolly bind:value={scrollIndex}>
-        {#each clean as { id }, i}
-          <div class="step" />
+        {#each clean as { title }, i}
+          {@const active = scrollIndex === i}
+          <div class="step" class:active><p>{title}</p></div>
         {/each}
       </Scrolly>
     </div>
@@ -81,6 +82,14 @@
 </div>
 
 <style>
+  :global(.cat-sex) {
+    --color-quote: var(--color-primary);
+  }
+
+  :global(.cat-relationships) {
+    --color-quote: var(--color-secondary);
+  }
+
   figure {
     --pad: 16px;
     position: sticky;
@@ -107,7 +116,7 @@
       calc(-50% + var(--offset) + var(--shift)),
       calc(var(--offset) + var(--shift))
     );
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-quote);
     z-index: var(--z);
     transition: top 0.5s ease-in-out, transform 0.5s ease-in-out;
   }
@@ -166,7 +175,7 @@
     opacity: 0.5;
   }
 
-  p {
+  blockquote p {
     display: block;
     position: relative;
     margin: 0;
@@ -190,7 +199,7 @@
   :global(p.censored mark) {
     background-color: transparent;
     padding: 0;
-    color: var(--color-primary);
+    color: var(--color-quote);
   }
 
   span {
@@ -214,18 +223,31 @@
 
   .steps {
     position: relative;
-    opacity: 1;
-    margin-top: calc((var(--height)) * -0.5 - 64px);
+    opacity: 0.5;
+    margin-top: calc((var(--height) * -1) - 64px);
     pointer-events: none;
   }
 
   .step {
-    height: var(--height);
-    background: red;
-    opacity: 1;
-    outline: 2px solid white;
+    height: calc(var(--height));
+    opacity: 0.25;
     pointer-events: none;
-    width: 100px;
-    /* visibility: hidden; */
+    max-width: var(--col-width);
+    margin: 0 auto;
+    transition: opacity 250ms ease-in-out;
+  }
+
+  .step.active {
+    opacity: 1;
+  }
+
+  .step p {
+    margin: 0;
+    max-width: 100%;
+    transform-origin: 0 0;
+    display: inline-block;
+    transform: rotate(-90deg) translate(-100%, -150%);
+    line-height: 1;
+    font-size: var(--20px);
   }
 </style>
