@@ -21,11 +21,14 @@
 
 <style>
   .steps {
+    /* TODO */
+    --height: 640px;
     position: relative;
+    margin-top: calc(var(--height) * -1);
   }
 
   .step {
-    height: 80vh;
+    height: var(--height);
   }
 
   .step p {

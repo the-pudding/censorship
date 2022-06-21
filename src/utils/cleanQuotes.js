@@ -18,7 +18,7 @@ export default async function cleanQuotes({ data, clips }) {
 	const clean = [];
 
 	for (let id of clips) {
-		const response = await fetch(`/assets/captions/${id}.vtt`);
+		const response = await fetch(`assets/captions/${id}.vtt`);
 		const text = await response.text();
 		const lines = parseVtt(text);
 
@@ -26,6 +26,7 @@ export default async function cleanQuotes({ data, clips }) {
 		clean.push({
 			id,
 			lines,
+			title: `Season ${match.season} Episode ${match.episode}`,
 			lineIndex: +match.lineNumber - 1
 		});
 	}

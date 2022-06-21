@@ -10,7 +10,7 @@
   export let start = 0;
   export let stop = 0;
 
-  const src = `/assets/clips/${name}.mp4`;
+  const src = `assets/clips/${name}.mp4`;
 
   const durationCut = stop - start;
   const mid = durationCut / 2 + start;
@@ -125,7 +125,7 @@
         label="English"
         kind="captions"
         srclang="en"
-        src="/assets/captions/{name}.vtt"
+        src="assets/captions/{name}.vtt"
         default
       />
     </video>

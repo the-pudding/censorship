@@ -12,7 +12,7 @@
 <style>
   div {
     max-width: var(--col-width);
-    margin: 0 auto;
+    margin: 64px auto;
     min-height: 200px;
   }
 </style>

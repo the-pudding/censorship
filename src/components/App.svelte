@@ -17,8 +17,8 @@
   <Title />
   {#each copy.sections as { id, chunks }}
     <section {id}>
-      {#each chunks as { type, text, component, clips, steps }}
-        <svelte:element this={type}>
+      {#each chunks as { type, text, component, clips, steps, classname }}
+        <svelte:element this={type} class={classname}>
           {#if text}
             {@html text}
           {:else}
