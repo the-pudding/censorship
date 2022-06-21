@@ -87,8 +87,8 @@
     font-family: inherit;
     font-size: 1em;
     display: inline-block;
-    width: 2em;
     text-align: center;
+    width: var(--width, "auto");
   }
 
   .option + .option label {

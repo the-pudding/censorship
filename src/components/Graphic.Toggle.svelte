@@ -25,7 +25,7 @@
   $: start = datum.start;
   $: stop = datum.stop;
   $: title = `Season ${datum.season} Episode ${datum.episode}`;
-  $: minHeight = `${Math.max(200, offsetWidth / (16 / 9))}px`;
+  $: minHeight = `${Math.max(200, offsetWidth / (16 / 9)) + 32}px`;
 </script>
 
 <div class="wrapper" bind:offsetWidth>
@@ -35,7 +35,13 @@
         <span>Clip Source:</span>
         <span>{title}</span>
       </p>
-      <ButtonSet {options} {legend} {legendPosition} bind:value={name} />
+      <ButtonSet
+        {options}
+        {legend}
+        {legendPosition}
+        bind:value={name}
+        --width={"2em"}
+      />
     </div>
   {/if}
   {#key name}

@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { scaleLinear } from "d3";
   import Icon from "$components/helpers/Icon.svelte";
+  import ButtonSet from "$components/helpers/ButtonSet.svelte";
 
   export let name;
   export let toggle = false;
@@ -16,6 +17,7 @@
   const mid = durationCut / 2 + start;
   const scaleBefore = scaleLinear().domain([0, start]).range([0, mid]);
   const scaleAfter = scaleLinear();
+  const initialCensoredValue = censored ? "Censored" : "Original";
 
   let videoEl;
   let duration;
@@ -25,12 +27,15 @@
   let autoplay = false;
   let loaded = false;
   let muted = false;
+  let toggledByUser = false;
+  let censoredValue = initialCensoredValue;
 
   const onCensored = () => {
+    if (!toggledByUser) return;
     paused = true;
     videoEl.pause();
     videoEl.currentTime = 0;
-    censored = !censored;
+    censored = censoredValue === "Censored";
     autoplay = true;
   };
 
@@ -59,9 +64,12 @@
 
   const toPercent = (a, b = 1) => `${(a / b) * 100}%`;
 
+  $: if (!toggledByUser && initialCensoredValue !== censoredValue)
+    toggledByUser = true;
+
+  $: onCensored(censoredValue);
   $: playpauseIcon = paused ? "play-circle" : "pause-circle";
   $: playpauseText = paused ? "Play video" : "Pause video";
-  $: censoreText = censored ? "View original" : "View censored";
   $: muteIcon = muted ? "volume-x" : "volume-2";
   $: muteText = muted ? "Unmute video" : "Mute video";
 
@@ -175,13 +183,12 @@
   {/if}
 
   {#if toggle && !isNaN(duration)}
-    <div>
-      <button
-        class:censored
-        class="btn-censor"
-        style:left={leftCut}
-        on:click={onCensored}>{censoreText}</button
-      >
+    <div class="toggle" style:left={leftCut}>
+      <ButtonSet
+        options={[{ value: "Censored" }, { value: "Original" }]}
+        --width={"7em"}
+        bind:value={censoredValue}
+      />
     </div>
   {/if}
 </figure>
@@ -278,24 +285,11 @@
     display: block;
   }
 
-  .btn-censor {
+  .toggle {
     position: absolute;
-    top: 0;
-    transform: translate(-50%, 50%);
+    bottom: 0;
+    transform: translate(-50%, 150%);
     text-transform: uppercase;
-    background-color: var(--color-primary);
-  }
-
-  .btn-censor.censored {
-    background-color: var(--color-button-bg);
-  }
-
-  .btn-censor:hover {
-    background-color: var(--color-button-hover);
-  }
-
-  .btn-censor.censored:hover {
-    background-color: var(--color-button-hover);
   }
 
   .video-wrapper .btn-playpause {
@@ -381,7 +375,6 @@
   }
 
   video::cue {
-    /* background: linear-gradient(to right, var(--color-fg), var(--color-fg)); */
     color: var(--color-fg);
     font-size: var(--20px);
     font-family: var(--sans);
@@ -393,6 +386,5 @@
       1px -1px 0px var(--color-bg), 1px 0px 0px var(--color-bg),
       1px 1px 0px var(--color-bg), 1px 1px 1px var(--color-bg),
       1px 0px 1px var(--color-bg);
-    /* outline: 4px solid var(--color-fg); */
   }
 </style>
