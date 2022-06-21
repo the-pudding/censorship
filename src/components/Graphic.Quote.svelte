@@ -19,6 +19,7 @@
     clean = await cleanQuotes({ data, clips });
     showContext = clean.map(() => false);
     count = clean.length;
+    console.log(clean);
   });
 </script>
 
@@ -112,17 +113,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transform: translate(
+    transform: translate3d(
       calc(-50% + var(--offset) + var(--shift)),
-      calc(var(--offset) + var(--shift))
+      calc(var(--offset) + var(--shift)),
+      0
     );
     outline: 2px solid var(--color-quote);
     z-index: var(--z);
-    transition: top 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
 
   blockquote.completed {
-    top: calc((var(--height) + (var(--count) * var(--pad))) * -1);
+    transform: translate3d(
+      calc(-50% + var(--offset) + var(--shift)),
+      calc((var(--height) + (var(--count) * var(--pad))) * -1.05),
+      0
+    );
   }
 
   .bg {

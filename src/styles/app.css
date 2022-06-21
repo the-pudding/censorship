@@ -7,6 +7,7 @@
 :root {
 	/* font */
 	--sans: "Atkinson", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+	/* --sans: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif; */
 	--serif: Iowan Old Style, Times New Roman, Times, serif;
 	--mono: Menlo, Consolas, Monaco, monospace;
 	

@@ -6,7 +6,8 @@ const parseVtt = (str) => {
 			.replace("</v>", "")
 			.replace("<c.highlight>", "<mark>")
 			.replace("</c>", "</mark>");
-		const q = r.split("\n")[0];
+		const rSplit = r.split("\n");
+		const q = rSplit.slice(0, rSplit.length < 4 ? rSplit.length : -3).join(" ");
 		const [speaker, text] = q.split(":");
 		return { speaker, text };
 	});

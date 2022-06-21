@@ -111,19 +111,22 @@
     background: var(--color-button-bg);
     color: var(--color-button-fg);
     font-weight: bold;
+    opacity: 1;
   }
 
   input[type="radio"]:checked + label,
   input[type="radio"]:checked:hover + label {
     background: var(--color-primary);
+    opacity: 1;
   }
 
   input[type="radio"]:hover + label {
     background: var(--color-gray-100);
+    opacity: 1;
   }
 
   input[type="radio"]:focus + label {
-    outline: 1px solid var(--color-focus);
+    outline: 2px solid var(--color-focus);
   }
 
   input[type="radio"]:disabled + label {
