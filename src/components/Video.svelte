@@ -205,6 +205,10 @@
     visibility: visible;
   }
 
+  video {
+    background: var(--color-gray-1000);
+  }
+
   .controls {
     position: absolute;
     top: 8px;
