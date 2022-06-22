@@ -64,7 +64,9 @@
         <button
           aria-label="Show Context"
           on:click={() => (showContext[i] = !sc)}
-          ><Icon name={sc ? "eye" : "eye-off"} /></button
+          ><span><Icon name={sc ? "eye" : "eye-off"} /></span><span
+            >Context</span
+          ></button
         >
       </blockquote>
     {/each}
@@ -208,19 +210,27 @@
     color: var(--color-quote);
   }
 
-  span {
+  p span {
     display: block;
     font-size: var(--20px);
   }
 
   button {
-    width: 2em;
-    height: 2em;
-    padding: 0;
+    /* width: 2em; */
+    /* height: 2em; */
+    /* padding: ; */
+		text-transform: uppercase;
     line-height: 1;
     position: absolute;
     bottom: 16px;
     right: 16px;
+    display: flex;
+    align-items: center;
+    font-size: var(--16px);
+  }
+
+  button span {
+    margin: 0 4px;
   }
 
   .show-context .context {
