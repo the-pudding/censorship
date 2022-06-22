@@ -1,11 +1,12 @@
 <script>
   import { getContext } from "svelte";
+  import { base } from "$app/paths";
   const copy = getContext("copy");
 </script>
 
 <section id="hero">
   <h1
-    style="--pathBefore: url(/assets/images/title-before.jpg); --pathAfter: url(/assets/images/title-after.jpg);"
+    style="--pathBefore: url({base}/assets/images/title-before.jpg); --pathAfter: url({base}/assets/images/title-after.jpg);"
   >
     {@html copy.hed}
   </h1>
