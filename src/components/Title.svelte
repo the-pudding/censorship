@@ -40,13 +40,13 @@
 
   :global(h1 mark:before) {
     left: 0;
-    background: url("assets/images/title-before.jpg");
+    background: url("/assets/images/title-before.jpg");
     transform: translate(-100%, 0);
   }
 
   :global(h1 mark:after) {
     right: 0;
-    background: url("assets/images/title-after.jpg");
+    background: url("/assets/images/title-after.jpg");
     transform: translate(100%, 0);
   }
 
