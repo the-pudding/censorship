@@ -19,7 +19,6 @@
     clean = await cleanQuotes({ data, clips });
     showContext = clean.map(() => false);
     count = clean.length;
-    console.log(clean);
   });
 </script>
 
@@ -219,7 +218,7 @@
     /* width: 2em; */
     /* height: 2em; */
     /* padding: ; */
-		text-transform: uppercase;
+    text-transform: uppercase;
     line-height: 1;
     position: absolute;
     bottom: 16px;

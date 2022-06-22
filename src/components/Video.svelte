@@ -134,7 +134,7 @@
         kind="captions"
         srclang="en"
         src="assets/captions/{name}.vtt"
-        default
+        default={captioned}
       />
     </video>
 
@@ -302,8 +302,12 @@
     background: transparent;
     line-height: 1;
     margin: 0;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 200ms ease-in-out;
+  }
+
+  .video-wrapper .btn-playpause.playing {
+    opacity: 0;
   }
 
   .video-wrapper .btn-playpause span {
@@ -334,11 +338,11 @@
   }
 
   .btn-playpause.playing {
-    display: none;
+    opacity: 0;
   }
 
   .video-wrapper:hover .btn-playpause.playing {
-    display: block;
+    opacity: 1;
   }
 
   .btn-playpause:focus {
