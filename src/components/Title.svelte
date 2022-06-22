@@ -5,7 +5,7 @@
 
 <section id="hero">
   <h1
-    style="--pathBefore: url(assets/images/title-before.jpg); --pathAfter: url(assets/images/title-after.jpg);"
+    style="--pathBefore: url(/assets/images/title-before.jpg); --pathAfter: url(/assets/images/title-after.jpg);"
   >
     {@html copy.hed}
   </h1>
