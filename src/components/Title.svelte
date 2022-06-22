@@ -4,7 +4,11 @@
 </script>
 
 <section id="hero">
-  <h1>{@html copy.hed}</h1>
+  <h1
+    style="--pathBefore: url(assets/images/title-before.jpg); --pathAfter: url(assets/images/title-after.jpg);"
+  >
+    {@html copy.hed}
+  </h1>
   <time>{copy.time}</time>
   <p>{@html copy.byline1}</p>
   <p>{@html copy.byline2}</p>
@@ -40,13 +44,13 @@
 
   :global(h1 mark:before) {
     left: 0;
-    background: url("/assets/images/title-before.jpg");
+    background: var(--pathBefore);
     transform: translate(-100%, 0);
   }
 
   :global(h1 mark:after) {
     right: 0;
-    background: url("/assets/images/title-after.jpg");
+    background: var(--pathAfter);
     transform: translate(100%, 0);
   }
 
