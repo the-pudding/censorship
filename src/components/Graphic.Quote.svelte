@@ -43,22 +43,22 @@
           class="bg"
           style="background-image: url(assets/images/{id}.jpg);"
         />
-
+        <!-- 
         {#if before}
           <p class="context text-outline">
             <span>{before.speaker}</span>{before.text}
           </p>
-        {/if}
+        {/if} -->
 
         <p class="censored text-outline">
           <span>{censored.speaker}</span>{@html censored.text}
         </p>
 
-        {#if after}
+        <!-- {#if after}
           <p class="context text-outline">
             <span>{after.speaker}</span>{after.text}
           </p>
-        {/if}
+        {/if} -->
 
         <button
           aria-label="Show Context"
@@ -226,6 +226,7 @@
     display: flex;
     align-items: center;
     font-size: var(--16px);
+    display: none;
   }
 
   button span {
