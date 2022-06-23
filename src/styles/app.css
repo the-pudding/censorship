@@ -131,11 +131,11 @@ aside {
 	font-size: var(--20px);
 	max-width: var(--col-width);
 	margin: 32px auto;
-	/* background: var(--color-black); */
+	background: var(--color-gray-900);
 	/* color: var(--color-gray-400); */
-	border: 2px solid var(--color-fg);
-	line-height: 1.5;
-	padding: 16px;
+	/* border-top: 4px solid var(--color-fg); */
+	line-height: 1.6;
+	padding: 24px 32px;
 }
 
 @media only screen and (min-width: 30rem) {
