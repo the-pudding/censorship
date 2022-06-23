@@ -207,6 +207,7 @@
 
   video {
     background: var(--color-gray-1000);
+    border: 2px solid var(--color-gray-1000);
   }
 
   .controls {

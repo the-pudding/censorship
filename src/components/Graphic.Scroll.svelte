@@ -1,15 +1,21 @@
 <script>
   import Scrolly from "$components/helpers/Scrolly.svelte";
   import Figure from "$components/Scroll.Figure.svelte";
+  import viewport from "$stores/viewport.js";
 
   export let steps;
+  let value = 0;
+
+  $: stepIndex = value || 0;
+  $: height = `${$viewport.height}px`;
+  $: marginTop = `${$viewport.height * -0.5}px`;
 </script>
 
-<Figure />
-<div class="steps">
-  <Scrolly>
+<Figure index={value} />
+<div class="steps" style:margin-top={marginTop}>
+  <Scrolly bind:value>
     {#each steps as text}
-      <div class="step text-outline">
+      <div class="step text-outline" style:height>
         <p>
           <span class="bg" />
           <span>{@html text}</span>
@@ -21,14 +27,11 @@
 
 <style>
   .steps {
-    /* TODO */
-    --height: 640px;
     position: relative;
-    margin-top: calc(var(--height) * -1);
   }
 
   .step {
-    height: var(--height);
+    min-height: 480px;
   }
 
   .step p {

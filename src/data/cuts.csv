@@ -15,7 +15,7 @@ id,index,season,episode,cut_seconds,cut_start,cut_stop,clip_start,clip_stop,cut_
 14,14,1,14,6,12:19,12:25,00:08.03,00:15.14,,"SHELDON: In back to the future, Marty McFly got the opportunity to hook up with his extremely attractive young mother.",non-heteronormative-relationship,mother-issue,,,,5
 15,14,1,14,4,17:25,17:29,00:01.18,00:07.04,2,"HOWARD: I guess that makes me ""large breasts.""",sex,body-part,,,,3
 16,15,1,15,8,1:52,2:00,,,,MISSY: Oh he once spent nine months with my legs wrapped around his head. | LEONARD: Excuse me?,sex,sexual-description,,,,3
-17,15,1,15,4,13:08,13:12,,,,HOWARD: Is it because I am Jewish? Cause I'd kill my rabbi with a pork chop to be with your sister.,religion,,,,,6
+17,15,1,15,4,13:08,13:12,,,,HOWARD: Is it because I am Jewish? Cause I'd kill my rabbi with a pork chop to be with your sister.,illegal,,,,,6
 18,15,1,15,10,16:01,16:11,,,,"SHELDON: You donate eggs. We will place them in cryogenic storage. I will find an appropriate sperm donor for your eggs, have them fertilized and implanted in you. That way, everybody wins.",illegal,,,,,9
 19,15,1,15,4,20:08,20:12,,,,MISSY: We had a dog who made a noise like that. Had to put him down.,illegal,,,,,7
 20,15,1,15,3,20:34,20:37,00:03.00,00:06.09,2,SHELDON: Other than that business with my testicles.,sex,body-part,,,,3

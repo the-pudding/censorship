@@ -2,25 +2,52 @@
   import { getContext } from "svelte";
   import getEpisodes from "$data/getEpisodes.js";
 
-  const data = getContext("data");
+  export let index;
 
+  const data = getContext("data");
   const episodes = getEpisodes(data);
 
-  let lost = false;
+  let figureWidth = 0;
+
+  const getTransform = ({ x, targetX, targetY, index, l, w }) => {
+    const left = `${(l ? targetX : x) * w}px`;
+    const top = l ? `${targetY * height}px` : `${index * height}px`;
+    return `translate3d(${left}, ${top}, 0)`;
+  };
+
+  $: visible = index > 0;
+  $: categorize = index > 1;
+  $: lost = index > 2;
+  $: height = 7;
 </script>
 
-<figure id="scroll">
+<figure
+  id="scroll"
+  bind:clientWidth={figureWidth}
+  style="--height: {height}px;"
+  class:visible
+  class:categorize
+  class:lost
+>
   {#each episodes as { index, scenes } (index)}
     {@const empty = !scenes.length}
-    <div class:empty>
-      {#each scenes as { width, left, type, targetY, targetX }}
+    <div class="episode" class:empty>
+      {#each scenes as { width, i, x, type, targetY, targetX }}
+        {@const transform = getTransform({
+          x,
+          targetY,
+          targetX,
+          index,
+          l: lost,
+          w: figureWidth
+        })}
         <span
+          class="scene {type}"
           data-tx={targetX}
           data-ty={targetY}
           style:width
-          style:left
-          class={type}
-          class:lost
+          style:transform
+          style="--delay: {i};"
         />
       {/each}
     </div>
@@ -29,62 +56,56 @@
 
 <style>
   figure {
-    --height: 7px;
+    --dur: 1s;
+    --ease: ease-in-out;
     position: sticky;
     top: 2rem;
     left: 0;
     width: 90%;
   }
 
-  div {
-    position: relative;
+  .episode {
     background: var(--color-gray-700);
     height: var(--height);
+    transition: all var(--dur) var(--ease);
+    border-bottom: 1px solid var(--color-bg);
   }
 
-  div:after {
-    content: "";
+  .scene {
     display: block;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--color-bg);
-  }
-
-  div.empty {
-    background: var(--color-gray-800);
-    transition: height 1s ease-in-out;
-    /* height: 0; */
-  }
-
-  span {
-    display: block;
-    position: absolute;
-    top: 0;
     height: calc(var(--height) - 1px);
     min-width: 2px;
-    transition: opacity;
-  }
-
-  span.lost {
+    transition: all var(--dur) var(--ease),
+      transform var(--dur) calc(var(--delay) * 10ms) var(--ease);
     opacity: 0;
+    top: 0;
+    left: 0;
   }
 
-  :global(#scroll span) {
+  .visible .episode.empty {
+    background: var(--color-gray-800);
+  }
+
+  .visible .scene {
+    opacity: 1;
     background: var(--color-gray-500);
   }
 
-  :global(#scroll span.sex) {
+  .lost .episode,
+  .lost .episode.empty {
+    background: var(--color-gray-700);
+  }
+
+  :global(.visible.categorize .scene.sex) {
     background: var(--color-primary);
   }
 
-  :global(#scroll span.disrespect) {
+  :global(.visible.categorize .scene.disrespect) {
     background: var(--color-secondary);
   }
 
-  :global(#scroll span.non-heteronormative-relationship) {
+  :global(.visible.categorize .scene.non-heteronormative-relationship) {
     background: var(--color-tertiary);
   }
 </style>

@@ -98,7 +98,7 @@ mark.cat-relationships {
 	color: var(--color-gray-800);
 }
 
-mark.cat-politics {
+mark.cat-disrespect {
 	background-color: var(--color-tertiary);
 	box-shadow: -4px 0px 0px var(--color-tertiary), 4px 0px 0px var(--color-tertiary);
 	padding: 0;

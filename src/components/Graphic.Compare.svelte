@@ -6,7 +6,7 @@
   {#each clips as { image, alt, figcaption }}
     <figure>
       <img src="assets/images/{image}.jpg" {alt} />
-      <figcaption>{figcaption}</figcaption>
+      <figcaption>{@html figcaption}</figcaption>
     </figure>
   {/each}
 </div>
@@ -19,8 +19,16 @@
     margin: 32px auto;
   }
 
+  figure {
+    margin: 0 4px;
+  }
   figcaption {
     text-align: center;
+    margin-top: 4px;
+  }
+
+  img {
+    border: 2px solid var(--color-gray-1000);
   }
 
   @media screen and (min-width: 40rem) {
