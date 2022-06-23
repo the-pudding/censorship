@@ -27,7 +27,7 @@ export default async function cleanQuotes({ data, clips }) {
 		clean.push({
 			id,
 			lines,
-			title: `Season ${match.season} Episode ${match.episode}`,
+			title: `Season ${match.season}, Episode ${match.episode}`,
 			lineIndex: +match.lineNumber - 1
 		});
 	}
