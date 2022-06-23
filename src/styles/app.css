@@ -23,6 +23,7 @@
 	--font-form: var(--sans);
 	--color-bg: var(--color-gray-800);
 	--color-fg: var(--color-gray-300);
+	--color-fg-darker: var(--color-gray-400);
   --color-link: var(--color-white);
 	--color-primary: var(--color-green);
 	--color-secondary: var(--color-blue);

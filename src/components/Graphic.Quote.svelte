@@ -239,12 +239,13 @@
 
   .steps {
     position: relative;
-    opacity: 0.5;
+    opacity: 1;
     margin-top: calc((var(--height) * -1) - 64px);
     pointer-events: none;
   }
 
   .step {
+    color: var(--color-fg-darker);
     height: calc(var(--height));
     opacity: 0.25;
     pointer-events: none;

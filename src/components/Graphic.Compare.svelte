@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     max-width: 1280px;
-    margin: 32px auto;
+    margin: 64px auto;
   }
 
   figure {
@@ -25,6 +25,7 @@
   figcaption {
     text-align: center;
     margin-top: 4px;
+    color: var(--color-fg-darker);
   }
 
   img {
