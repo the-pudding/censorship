@@ -16,7 +16,6 @@
 
   onMount(async () => {
     clean = await cleanQuotes({ data, clips });
-    showContext = clean.map(() => false);
     count = clean.length;
   });
 </script>

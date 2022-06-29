@@ -6,12 +6,12 @@
   export let steps;
   let value = 0;
 
-  $: stepIndex = value || 0;
+  $: scrollIndex = value || 0;
   $: height = `${$viewport.height}px`;
   $: marginTop = `${$viewport.height * -0.5}px`;
 </script>
 
-<Figure index={value} />
+<Figure index={scrollIndex} />
 <div class="steps" style:margin-top={marginTop}>
   <Scrolly bind:value>
     {#each steps as text}
