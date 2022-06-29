@@ -136,6 +136,16 @@ aside {
 	padding: 16px;
 }
 
+#method {
+	border-top: 2px solid var(--color-fg);
+	max-width: var(--col-width);
+	margin: 4rem auto;
+}
+
+#method p {
+	font-size: var(--16px);
+}
+
 @media only screen and (min-width: 25rem) {
 	article p {
 		--size: var(--20px);
@@ -161,5 +171,9 @@ aside {
 	figure {
 		margin: var(--64px) auto;
 	}
+
+	#method p {
+	font-size: var(--20px);
+}
 }
 

@@ -29,3 +29,5 @@
     </section>
   {/each}
 </article>
+
+<Footer />

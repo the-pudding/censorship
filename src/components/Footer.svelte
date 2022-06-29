@@ -51,7 +51,8 @@
     </div>
     <p>
       <a href="https://pudding.cool">The Pudding</a>
-      is a digital publication that explains ideas debated in culture with visual essays.
+      is a digital publication that explains ideas debated in culture with visual
+      essays.
     </p>
   </section>
 
@@ -70,17 +71,21 @@
 
 <style>
   footer {
-    background-color: var(--color-fg);
-    color: var(--color-bg);
+    background-color: var(--color-gray-1000);
+    color: var(--color-fg);
     font-family: var(--sans);
     padding: 3em 1em;
     margin-top: 3em;
   }
 
   a,
-  a:visited,
+  a:visited {
+    color: var(--color-fg);
+    border: none;
+  }
+
   a:hover {
-    color: var(--color-bg);
+    color: var(--color-white);
   }
 
   .stories {

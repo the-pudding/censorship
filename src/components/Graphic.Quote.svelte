@@ -243,6 +243,10 @@
   }
 
   @media screen and (min-width: 50rem) {
+    .steps {
+      margin-top: calc((var(--height) * -1) - 64px);
+    }
+
     .step p {
       transform: rotate(-90deg) translate(-100%, -150%);
     }
