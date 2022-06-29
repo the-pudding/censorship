@@ -7,7 +7,6 @@
 
   const data = getContext("data");
   let clean = [];
-  let showContext = [];
   let scrollIndex = 0;
   let count = 0;
 
@@ -33,40 +32,15 @@
       {@const after = lines[lineIndex + 1]}
       {@const completed = scrollIndex > i}
       {@const z = count - i}
-      {@const sc = showContext[i]}
-      <blockquote
-        class:completed
-        class:show-context={sc}
-        style="--i: {i}; --z: {z}"
-      >
+      <blockquote class:completed style="--i: {i}; --z: {z}">
         <div
           class="bg"
           style="background-image: url(assets/images/{id}.jpg);"
         />
-        <!-- 
-        {#if before}
-          <p class="context text-outline">
-            <span>{before.speaker}</span>{before.text}
-          </p>
-        {/if} -->
 
         <p class="censored text-outline">
           <span>{censored.speaker}</span>{@html censored.text}
         </p>
-
-        <!-- {#if after}
-          <p class="context text-outline">
-            <span>{after.speaker}</span>{after.text}
-          </p>
-        {/if} -->
-
-        <button
-          aria-label="Show Context"
-          on:click={() => (showContext[i] = !sc)}
-          ><span><Icon name={sc ? "eye" : "eye-off"} /></span><span
-            >Context</span
-          ></button
-        >
       </blockquote>
     {/each}
   </figure>
@@ -98,7 +72,6 @@
     top: 64px;
     left: 0;
     height: var(--height);
-    /* background: green; */
   }
 
   blockquote {
@@ -174,25 +147,11 @@
     transition: all 250ms;
   }
 
-  .show-context .bg {
-    opacity: 0.25;
-  }
-
-  .show-context .bg:after {
-    opacity: 0.5;
-  }
-
   blockquote p {
     display: block;
     position: relative;
     margin: 0;
     padding: 16px 0;
-  }
-
-  p.context {
-    opacity: 0;
-    transition: opacity 0.25s ease-in-out;
-    font-size: var(--18px);
   }
 
   p.censored {
@@ -212,29 +171,6 @@
   p span {
     display: block;
     font-size: var(--20px);
-  }
-
-  button {
-    /* width: 2em; */
-    /* height: 2em; */
-    /* padding: ; */
-    text-transform: uppercase;
-    line-height: 1;
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    display: flex;
-    align-items: center;
-    font-size: var(--16px);
-    display: none;
-  }
-
-  button span {
-    margin: 0 4px;
-  }
-
-  .show-context .context {
-    opacity: 1;
   }
 
   .steps {
