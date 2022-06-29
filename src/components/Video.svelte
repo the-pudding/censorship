@@ -57,6 +57,10 @@
     paused = false;
   };
 
+  const onEnded = () => {
+    currentTime = 0;
+  };
+
   const onPlaypause = () => {
     if (paused) videoEl.play();
     else videoEl.pause();
@@ -128,6 +132,7 @@
       bind:duration
       on:pause={onPause}
       on:play={onPlay}
+      on:ended={onEnded}
     >
       <track
         label="English"
