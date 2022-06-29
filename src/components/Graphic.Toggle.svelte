@@ -35,13 +35,15 @@
         <span>Clip Source:</span>
         <span>{title}</span>
       </p>
-      <ButtonSet
-        {options}
-        {legend}
-        {legendPosition}
-        bind:value={name}
-        --width={"2em"}
-      />
+      <div class="buttonset">
+        <ButtonSet
+          {options}
+          {legend}
+          {legendPosition}
+          bind:value={name}
+          --width={"2em"}
+        />
+      </div>
     </div>
   {/if}
   {#key name}
@@ -58,19 +60,16 @@
 
 <style>
   .wrapper {
-    padding-bottom: 3.25rem;
     max-width: var(--col-width);
-    margin: var(--64px) auto;
-    min-height: 200px;
+    margin: var(--32px) auto;
+    padding-bottom: 0px;
+    min-height: 160px;
   }
 
   .ui {
     margin-bottom: 1rem;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    /* background: var(--color-fg);
-    color: var(--color-bg); */
+    flex-direction: column-reverse;
   }
 
   .ui p {
@@ -78,11 +77,37 @@
     font-size: var(--16px);
     line-height: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-top: 16px;
   }
 
   p span:last-of-type {
     font-weight: bold;
-    margin-top: 4px;
+    margin-left: 8px;
+  }
+
+  @media screen and (min-width: 30rem) {
+    .ui {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    p span:last-of-type {
+      margin-top: 4px;
+      margin-left: 0;
+    }
+
+    .ui p {
+      flex-direction: column;
+      margin-top: 0;
+    }
+  }
+
+  @media screen and (min-width: 40rem) {
+    .wrapper {
+      margin: var(--64px) auto;
+      padding-bottom: 56px;
+    }
   }
 </style>

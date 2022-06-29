@@ -1,6 +1,7 @@
 <script>
   import { getContext } from "svelte";
   import getEpisodes from "$data/getEpisodes.js";
+  import viewport from "$stores/viewport.js";
 
   export let index;
 
@@ -19,7 +20,7 @@
   $: visible = index > 0;
   $: categorize = index > 1;
   $: lost = index > 5;
-  $: height = 7;
+  $: height = Math.min(7, Math.floor($viewport.height / 100));
   $: {
     if (index === 3) example = "sex";
     else if (index === 4) example = "non-heteronormative-relationship";
@@ -62,7 +63,7 @@
               class="content"
               class:visible={example === type}
               class:left={targetX > 0.75}
-              class:right={targetX > 0.25}>{content}</span
+              class:right={targetX < 0.25}>{content}</span
             >
           {/if}
         </div>
@@ -106,6 +107,7 @@
   }
 
   .content {
+    font-size: var(--14px);
     display: block;
     width: 15em;
     position: absolute;
@@ -136,7 +138,7 @@
 
   .content.visible {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-10%, -50%) scale(1);
   }
 
   .content.left.visible {
@@ -144,7 +146,7 @@
   }
 
   .content.right.visible {
-    transform: translate(0%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .visible .episode.empty {
@@ -183,5 +185,19 @@
 
   :global(.scene.disrespect .content) {
     background: var(--color-tertiary);
+  }
+
+  @media screen and (min-width: 40rem) {
+    .content {
+      font-size: var(--16px);
+    }
+
+    .content.visible {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .content.right.visible {
+      transform: translate(0, -50%) scale(1);
+    }
   }
 </style>

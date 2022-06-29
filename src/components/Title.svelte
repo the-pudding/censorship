@@ -25,12 +25,12 @@
   h1 {
     font-weight: bold;
     text-transform: uppercase;
-    font-size: var(--48px);
+    font-size: var(--40px);
     line-height: 1.2;
   }
 
   p {
-    margin: 0 auto;
+    margin: 4px auto;
   }
 
   p:last-of-type,
@@ -41,6 +41,10 @@
   :global(h1 mark) {
     position: relative;
     display: inline-block;
+  }
+
+  :global(h1 mark:before, h1 mark:after) {
+    display: none;
   }
 
   :global(h1 mark:before) {
@@ -59,7 +63,7 @@
     content: "";
     position: absolute;
     top: 0;
-    width: 12rem;
+    width: 8rem;
     height: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
@@ -86,6 +90,11 @@
     p:last-of-type,
     time {
       font-size: var(--20px);
+    }
+
+    :global(h1 mark:before, h1 mark:after) {
+      width: 11rem;
+      display: block;
     }
   }
 </style>

@@ -28,6 +28,7 @@
 <style>
   .steps {
     position: relative;
+    pointer-events: none;
   }
 
   .step {

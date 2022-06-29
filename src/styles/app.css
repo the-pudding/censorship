@@ -108,7 +108,7 @@ mark.cat-disrespect {
 }
 
 article p {
-	--size: var(--20px);
+	--size: var(--18px);
 	margin: var(--size) auto;
 	font-size: var(--size);
 	line-height: 1.5;
@@ -116,7 +116,7 @@ article p {
 }
 
 figure {
-	margin: var(--64px) auto;
+	margin: var(--32px) auto;
 }
 
 button {
@@ -128,25 +128,38 @@ mark {
 }
 
 aside {
-	font-size: var(--20px);
+	font-size: var(--14px);
 	max-width: var(--col-width);
 	margin: 32px auto;
 	background: var(--color-gray-900);
-	/* color: var(--color-gray-400); */
-	/* border-top: 4px solid var(--color-fg); */
 	line-height: 1.6;
-	padding: 24px 32px;
+	padding: 16px;
+}
+
+@media only screen and (min-width: 25rem) {
+	article p {
+		--size: var(--20px);
+	}
 }
 
 @media only screen and (min-width: 30rem) {
 	article p {
 		--size: var(--24px);
 	}
+
+	aside {
+		font-size: var(--20px);
+		padding: 24px 32px;
+	}
 }
 
 @media only screen and (min-width: 60rem) {
 	article p {
 		--size: var(--28px);
+	}
+
+	figure {
+		margin: var(--64px) auto;
 	}
 }
 

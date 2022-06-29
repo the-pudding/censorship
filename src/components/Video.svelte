@@ -183,7 +183,7 @@
   {/if}
 
   {#if toggle && !isNaN(duration)}
-    <div class="toggle" style:left={leftCut}>
+    <div class="toggle" style="--left: {leftCut}">
       <ButtonSet
         options={[{ value: "Censored" }, { value: "Original" }]}
         --width={"7em"}
@@ -196,7 +196,7 @@
 <style>
   figure {
     position: relative;
-    min-height: var(--min-height, 200px);
+    min-height: var(--min-height, 160px);
     visibility: hidden;
     margin: 0;
   }
@@ -291,9 +291,9 @@
   }
 
   .toggle {
-    position: absolute;
-    bottom: 0;
-    transform: translate(-50%, 150%);
+    text-align: center;
+    left: 0;
+    margin-top: 16px;
     text-transform: uppercase;
   }
 
@@ -385,7 +385,7 @@
 
   video::cue {
     color: var(--color-fg);
-    font-size: var(--20px);
+    font-size: var(--14px);
     font-family: var(--sans);
     text-shadow: -1px -1px 1px var(--color-bg), -1px 0px 1px var(--color-bg),
       -1px 1px 1px var(--color-bg), -1px -1px 0px var(--color-bg),
@@ -395,5 +395,18 @@
       1px -1px 0px var(--color-bg), 1px 0px 0px var(--color-bg),
       1px 1px 0px var(--color-bg), 1px 1px 1px var(--color-bg),
       1px 0px 1px var(--color-bg);
+  }
+
+  @media screen and (min-width: 40rem) {
+    video::cue {
+      font-size: var(--20px);
+    }
+
+    .toggle {
+      position: absolute;
+      transform: translate(-50%, 150%);
+      bottom: 0;
+      left: var(--left);
+    }
   }
 </style>

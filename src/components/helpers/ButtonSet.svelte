@@ -85,7 +85,7 @@
     outline: none;
     cursor: pointer;
     font-family: inherit;
-    font-size: 1em;
+    font-size: var(--14px);
     display: inline-block;
     text-align: center;
     width: var(--width, "auto");
@@ -133,5 +133,11 @@
     color: var(--color-gray-700);
     background: var(--color-gray-500);
     cursor: not-allowed;
+  }
+
+  @media screen and (min-width: 40rem) {
+    label {
+      font-size: var(--16px);
+    }
   }
 </style>

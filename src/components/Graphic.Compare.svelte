@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     max-width: 1280px;
-    margin: 64px auto;
+    margin: 32px auto;
   }
 
   figure {
@@ -26,6 +26,8 @@
     text-align: center;
     margin-top: 4px;
     color: var(--color-fg-darker);
+    font-size: var(--14px);
+    margin-bottom: 8px;
   }
 
   img {
@@ -35,6 +37,12 @@
   @media screen and (min-width: 40rem) {
     div {
       flex-direction: row;
+      margin: 64px auto;
+    }
+
+    figcaption {
+      font-size: var(--16px);
+      margin-bottom: 0;
     }
   }
 </style>

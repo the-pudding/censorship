@@ -10,7 +10,6 @@
   let scrollIndex = 0;
   let count = 0;
 
-  $: height = `${500}px`;
   $: scrollIndex = scrollIndex || 0;
   $: shift = `${scrollIndex * -16}px`;
 
@@ -20,10 +19,7 @@
   });
 </script>
 
-<div
-  class="wrapper"
-  style="--height: {height}; --count: {count}; --shift: {shift};"
->
+<div class="wrapper" style="--count: {count}; --shift: {shift};">
   <figure>
     {#each clean as { id, lines, lineIndex }, i}
       {@const before = lines[lineIndex - 1]}
@@ -65,24 +61,31 @@
     --color-quote: var(--color-secondary);
   }
 
+  .wrapper {
+    --height: 320px;
+  }
+
   figure {
     --pad: 16px;
     position: sticky;
     top: 64px;
     left: 0;
     height: var(--height);
+    width: 90%;
   }
 
   blockquote {
-    --offset: calc(var(--i) * 16px);
+    --o: 12px;
+    --offset: calc(var(--i) * var(--o));
     position: absolute;
     background: var(--color-bg);
     top: 0;
     left: 50%;
     height: var(--height);
+    width: 85%;
     max-width: var(--col-width);
     margin: 0 auto;
-    padding: 32px;
+    padding: var(--o);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,7 +158,7 @@
 
   p.censored {
     --stroke-width: 2px;
-    font-size: var(--48px);
+    font-size: var(--24px);
     line-height: 1.1;
     color: var(--color-white);
     font-weight: bold;
@@ -169,13 +172,13 @@
 
   p span {
     display: block;
-    font-size: var(--20px);
+    font-size: var(--16px);
   }
 
   .steps {
     position: relative;
     opacity: 1;
-    margin-top: calc((var(--height) * -1) - 64px);
+    margin-top: calc((var(--height) * -1) - 32px);
     pointer-events: none;
   }
 
@@ -198,8 +201,50 @@
     max-width: 100%;
     transform-origin: 0 0;
     display: inline-block;
-    transform: rotate(-90deg) translate(-100%, -150%);
+    transform: rotate(-90deg) translate(-100%, -25%);
     line-height: 1;
-    font-size: var(--20px);
+    font-size: var(--14px);
+  }
+
+  @media screen and (min-width: 30rem) {
+    .wrapper {
+      --height: 400px;
+    }
+
+    p.censored {
+      font-size: var(--32px);
+    }
+
+    .step p {
+      transform: rotate(-90deg) translate(-100%, 25%);
+    }
+  }
+
+  @media screen and (min-width: 40rem) {
+    .wrapper {
+      --height: 450px;
+    }
+
+    blockquote {
+      --o: 16px;
+    }
+
+    p.censored {
+      font-size: var(--48px);
+    }
+
+    p span {
+      font-size: var(--20px);
+    }
+
+    .step p {
+      font-size: var(--20px);
+    }
+  }
+
+  @media screen and (min-width: 50rem) {
+    .step p {
+      transform: rotate(-90deg) translate(-100%, -150%);
+    }
   }
 </style>
