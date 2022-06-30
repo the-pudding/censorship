@@ -39,9 +39,14 @@
 <Footer />
 
 <style>
+	article {
+		padding: 0 16px;
+	}
+
 	.motion {
 		position: fixed;
 		bottom: 16px;
 		right: 16px;
+		z-index: var(--z-overlay);
 	}
 </style>
