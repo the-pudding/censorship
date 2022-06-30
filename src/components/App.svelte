@@ -7,6 +7,8 @@
   import Compare from "$components/Graphic.Compare.svelte";
   import Scroll from "$components/Graphic.Scroll.svelte";
   import Video from "$components/Graphic.Video.svelte";
+  // import Toggler from "$components/helpers/Toggle.svelte";
+  import Motion from "$components/helpers/Motion.svelte";
 
   const copy = getContext("copy");
   const data = getContext("data");
@@ -14,6 +16,10 @@
 </script>
 
 <article>
+  <div class="motion">
+    <!-- <Toggler label="Motion" /> -->
+    <Motion />
+  </div>
   <Title />
   {#each copy.sections as { id, chunks }}
     <section {id}>
@@ -31,3 +37,11 @@
 </article>
 
 <Footer />
+
+<style>
+  .motion {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
