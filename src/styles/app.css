@@ -41,7 +41,7 @@
 	--color-text-outline: var(--color-bg);
 	
 	--col-width: 40rem;
-	--1s: 1s;
+	--1s: 0s;
 }
 
 h1 {
@@ -174,8 +174,8 @@ aside {
 }
 }
 
-@media screen and (prefers-reduced-motion: reduce) {
+@media screen and (prefers-reduced-motion: no-preference) {
 	:root {
-		--1s: 0s;
+		--1s: 1s;
 	}
 }
