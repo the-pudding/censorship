@@ -8,7 +8,7 @@
   import Scroll from "$components/Graphic.Scroll.svelte";
   import Video from "$components/Graphic.Video.svelte";
   // import Toggler from "$components/helpers/Toggle.svelte";
-  import Motion from "$components/helpers/Motion.svelte";
+  import MotionToggle from "$lib/components/helpers/MotionToggle.svelte";
 
   const copy = getContext("copy");
   const data = getContext("data");
@@ -18,7 +18,7 @@
 <article>
   <div class="motion">
     <!-- <Toggler label="Motion" /> -->
-    <Motion />
+    <MotionToggle />
   </div>
   <Title />
   {#each copy.sections as { id, chunks }}
