@@ -127,6 +127,8 @@
 <figure class:loaded>
 	<div class="video-wrapper">
 		<video
+			playsinline
+			poster="assets/posters/{name}@2x.jpg"
 			bind:this={videoEl}
 			bind:currentTime
 			bind:duration

@@ -4,7 +4,7 @@
 	"scripts": {
 		"gdoc": "node tasks/fetch-google.js",
 		"style": "node tasks/style-dictionary.js",
-		"dev": "svelte-kit dev",
+		"dev": "svelte-kit dev --host",
 		"build": "svelte-kit build",
 		"start": "svelte-kit start",
 		"lint": "prettier --check .",
