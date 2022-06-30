@@ -198,6 +198,10 @@
 			/>
 		</div>
 	{/if}
+
+	{#if playing}
+		<p class="mobile text-outline">Tap to pause</p>
+	{/if}
 </figure>
 
 <style>
@@ -392,6 +396,19 @@
 			1px 0px 1px var(--color-bg);
 	}
 
+	.mobile {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		margin: 0;
+		z-index: var(--z-top);
+		color: var(--color-fg);
+		opacity: 0.75;
+		text-transform: uppercase;
+		font-size: var(--12px);
+		line-height: 1;
+	}
+
 	@media screen and (min-width: 40rem) {
 		video::cue {
 			font-size: var(--20px);
@@ -416,6 +433,10 @@
 
 		.video-wrapper:hover .btn-playpause.playing {
 			opacity: 1;
+		}
+
+		.mobile {
+			display: none;
 		}
 	}
 </style>
