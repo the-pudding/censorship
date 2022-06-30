@@ -1,6 +1,7 @@
 <script>
 	import { browser } from "$app/env";
 	import Icon from "$components/helpers/Icon.svelte";
+	import mq from "$stores/mq.js";
 
 	export let strokeWidth = "2px";
 	export let showLabel = false;
@@ -12,6 +13,7 @@
 		value = value === "on" ? "off" : "on";
 	};
 
+	$: value = $mq.reducedMotion || value;
 	$: name = value === "on" ? "play-circle" : "pause-circle";
 	$: aria = value === "on" ? "disable" : "enable";
 	$: cssVar = value === "on" ? "1s" : "0s";

@@ -28,7 +28,6 @@
 <style>
 	.steps {
 		position: relative;
-		pointer-events: none;
 		width: 85%;
 		margin-left: auto;
 		margin-right: auto;
