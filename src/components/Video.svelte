@@ -254,7 +254,7 @@
     background: var(--color-primary);
     opacity: 0.75;
     transform: translate(-50%, 0);
-    transition: all 0.5s ease-in-out;
+    transition: all calc(var(--1s) * 0.5) ease-in-out;
     text-align: center;
     color: var(--color-bg);
   }
@@ -313,7 +313,7 @@
     line-height: 1;
     margin: 0;
     opacity: 1;
-    transition: opacity 200ms ease-in-out;
+    transition: opacity calc(var(--1s) * 0.2) ease-in-out;
   }
 
   .video-wrapper .btn-playpause.playing {
@@ -336,7 +336,7 @@
     text-align: center;
     background: transparent;
     color: var(--color-white);
-    transition: opacity 200ms ease-in-out;
+    transition: opacity calc(var(--1s) * 0.2) ease-in-out;
   }
 
   .btn-playpause:hover {

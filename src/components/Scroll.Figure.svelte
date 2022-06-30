@@ -78,7 +78,7 @@
 
 <style>
   figure {
-    --dur: 1s;
+    --dur: var(--1s);
     --ease: ease-in-out;
     position: sticky;
     top: 2rem;
@@ -158,7 +158,8 @@
     height: calc(var(--height) - 1px);
     min-width: 2px;
     transition: all var(--dur) var(--ease),
-      transform var(--dur) calc(var(--delay) * 10ms) var(--ease);
+      transform var(--dur) calc(var(--delay) * calc(var(--1s) * 0.01))
+        var(--ease);
     opacity: 0;
     top: 0;
     left: 0;
@@ -178,7 +179,8 @@
     padding: 8px;
     border: 2px solid var(--color-gray-1000);
     opacity: 0;
-    transition: transform 750ms ease-in-out, opacity 100ms;
+    transition: transform calc(var(--1s) * 0.75) ease-in-out,
+      opacity calc(var(--1s) * 0.1);
   }
 
   .content.left {

@@ -96,7 +96,7 @@
     );
     outline: 2px solid var(--color-quote);
     z-index: var(--z);
-    transition: all 0.5s ease-in-out;
+    transition: all calc(var(--1s) * 0.5) ease-in-out;
   }
 
   blockquote.completed {
@@ -117,7 +117,7 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
     opacity: 0.5;
-    transition: all 250ms;
+    transition: all calc(var(--1s) * 0.25);
   }
 
   .bg:after {
@@ -146,7 +146,7 @@
       );
     background-position: 0 0, 2px 2px;
     background-size: 4px 4px;
-    transition: all 250ms;
+    transition: all calc(var(--1s) * 0.25);
   }
 
   blockquote p {
@@ -189,7 +189,7 @@
     pointer-events: none;
     max-width: var(--col-width);
     margin: 0 auto;
-    transition: opacity 250ms ease-in-out;
+    transition: opacity calc(var(--1s) * 0.25) ease-in-out;
   }
 
   .step.active {
