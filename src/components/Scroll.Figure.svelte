@@ -1,4 +1,5 @@
 <script>
+  import { max } from "d3";
   import { getContext } from "svelte";
   import getEpisodes from "$data/getEpisodes.js";
   import viewport from "$stores/viewport.js";
@@ -10,6 +11,8 @@
 
   let figureWidth = 0;
   let example;
+  const maxSeconds = max(data, (d) => d.timeStop);
+  const maxMin = Math.ceil(maxSeconds / 60);
 
   const getTransform = ({ x, targetX, targetY, index, l, w }) => {
     const left = `${(l ? targetX : x) * w}px`;
@@ -31,45 +34,46 @@
 
 <figure
   id="scroll"
-  bind:clientWidth={figureWidth}
-  style="--height: {height}px;"
+  style="--height: {height}px; --maxMin: {maxMin}m"
   class:visible
   class:categorize
   class:lost
 >
-  {#each episodes as { index, scenes } (index)}
-    {@const empty = !scenes.length}
-    <div class="episode" class:empty data-episode={index}>
-      {#each scenes as { width, i, x, type, targetY, targetX, content }}
-        {@const transform = getTransform({
-          x,
-          targetY,
-          targetX,
-          index,
-          l: lost,
-          w: figureWidth
-        })}
-        <div
-          class="scene {type}"
-          class:elevate={!!content}
-          data-tx={targetX}
-          data-ty={targetY}
-          style:width
-          style:transform
-          style="--delay: {i};"
-        >
-          {#if content}
-            <span
-              class="content"
-              class:visible={example === type}
-              class:left={targetX > 0.75}
-              class:right={targetX < 0.25}>{content}</span
-            >
-          {/if}
-        </div>
-      {/each}
-    </div>
-  {/each}
+  <div class="episodes" bind:clientWidth={figureWidth}>
+    {#each episodes as { index, scenes } (index)}
+      {@const empty = !scenes.length}
+      <div class="episode" class:empty data-episode={index + 1}>
+        {#each scenes as { width, i, x, type, targetY, targetX, content }}
+          {@const transform = getTransform({
+            x,
+            targetY,
+            targetX,
+            index,
+            l: lost,
+            w: figureWidth
+          })}
+          <div
+            class="scene {type}"
+            class:elevate={!!content}
+            data-tx={targetX}
+            data-ty={targetY}
+            style:width
+            style:transform
+            style="--delay: {i};"
+          >
+            {#if content}
+              <span
+                class="content"
+                class:visible={example === type}
+                class:left={targetX > 0.75}
+                class:right={targetX < 0.25}>{content}</span
+              >
+            {/if}
+          </div>
+        {/each}
+      </div>
+    {/each}
+  </div>
 </figure>
 
 <style>
@@ -79,8 +83,38 @@
     position: sticky;
     top: 2rem;
     left: 0;
-    width: 90%;
     overflow: hidden;
+    padding-bottom: var(--height);
+    padding-top: calc(var(--height) * 3);
+  }
+
+  .episodes {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .episodes:before {
+    content: "0 minutes";
+    display: block;
+    position: absolute;
+    top: -8px;
+    left: 0;
+    transform: translate(0, calc(var(--height) * -1));
+    font-size: var(--14px);
+    line-height: 1;
+    color: var(--color-gray-400);
+  }
+
+  .episodes:after {
+    content: "21 m";
+    display: block;
+    position: absolute;
+    top: -8px;
+    right: 0;
+    transform: translate(0, calc(var(--height) * -1));
+    font-size: var(--14px);
+    line-height: 1;
+    color: var(--color-gray-400);
   }
 
   .episode {
@@ -88,6 +122,30 @@
     height: var(--height);
     transition: all var(--dur) var(--ease);
     border-bottom: 1px solid var(--color-bg);
+  }
+
+  [data-episode="1"]:before {
+    content: "#1";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -8px;
+    transform: translate(-100%, calc(var(--height) * 0.5));
+    font-size: var(--14px);
+    line-height: 1;
+    color: var(--color-gray-400);
+  }
+
+  [data-episode="100"]:before {
+    content: "#100";
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: -8px;
+    transform: translate(-100%, calc(var(--height) * 0.5));
+    font-size: var(--14px);
+    line-height: 1;
+    color: var(--color-gray-400);
   }
 
   .scene.elevate {
@@ -198,6 +256,19 @@
 
     .content.right.visible {
       transform: translate(0, -50%) scale(1);
+    }
+
+    .episodes {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    [data-episode="1"]:before {
+      content: "Episode #1";
+    }
+
+    [data-episode="100"]:before {
+      display: block;
     }
   }
 </style>
