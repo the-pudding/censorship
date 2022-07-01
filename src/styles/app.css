@@ -41,7 +41,7 @@
 	--color-text-outline: var(--color-bg);
 	
 	--col-width: 40rem;
-	--1s: 0s;
+	--1s: 1ms;
 }
 
 h1 {
