@@ -17,7 +17,7 @@ const data = rawData.map(d => ({
 	lineNumber: d.cut_line,
 	type: d.type,
 	guideline: +d.guideline_no,
-	content: d.example ? d.cut_content : undefined
+	content: d.example_content || undefined
 }));
 
 export const get = async () => {
