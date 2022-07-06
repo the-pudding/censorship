@@ -213,6 +213,7 @@
 		opacity: 0;
 		transition: transform calc(var(--1s) * 0.75) ease-in-out,
 			opacity calc(var(--1s) * 0.1);
+		text-shadow: none;
 	}
 
 	.content.left {

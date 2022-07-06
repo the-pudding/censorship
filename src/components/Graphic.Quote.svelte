@@ -3,6 +3,7 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import cleanQuotes from "$utils/cleanQuotes.js";
+	import { animations } from "$stores/misc.js";
 	export let clips;
 
 	const data = getContext("data");
@@ -10,6 +11,7 @@
 	let scrollIndex = 0;
 	let count = 0;
 
+	$: animated = $animations;
 	$: scrollIndex = scrollIndex || 0;
 	$: shift = `${scrollIndex * -16}px`;
 
@@ -19,14 +21,15 @@
 	});
 </script>
 
-<div class="wrapper" style="--count: {count}; --shift: {shift};">
+<div class="wrapper" class:animated style="--count: {count}; --shift: {shift};">
 	<figure>
-		{#each clean as { id, lines, lineIndex }, i}
+		{#each clean as { id, lines, lineIndex, title }, i}
 			{@const before = lines[lineIndex - 1]}
 			{@const censored = lines[lineIndex]}
 			{@const after = lines[lineIndex + 1]}
 			{@const completed = scrollIndex > i}
 			{@const z = count - i}
+			<p class="title">{title}</p>
 			<blockquote class:completed style="--i: {i}; --z: {z}">
 				<div
 					class="bg"
@@ -41,7 +44,7 @@
 	</figure>
 
 	{#if count}
-		<div class="steps">
+		<div class="steps" class:animated>
 			<Scrolly bind:value={scrollIndex}>
 				{#each clean as { title }, i}
 					{@const active = scrollIndex === i}
@@ -61,26 +64,28 @@
 		--color-quote: var(--color-secondary);
 	}
 
-	.wrapper {
+	.animated .wrapper {
 		--height: 320px;
 	}
 
 	figure {
 		--pad: 16px;
+		width: 90%;
+		position: relative;
+	}
+
+	.animated figure {
 		position: sticky;
 		top: 64px;
 		left: 0;
 		height: var(--height);
-		width: 90%;
 	}
 
 	blockquote {
 		--o: 12px;
 		--offset: calc(var(--i) * var(--o));
-		position: absolute;
+		position: relative;
 		background: var(--color-bg);
-		top: 0;
-		left: 50%;
 		height: var(--height);
 		width: 85%;
 		max-width: var(--col-width);
@@ -89,17 +94,23 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		transform: translate3d(
-			calc(-50% + var(--offset) + var(--shift)),
-			calc(var(--offset) + var(--shift)),
-			0
-		);
 		outline: 2px solid var(--color-quote);
 		z-index: var(--z);
 		transition: all calc(var(--1s) * 0.5) ease-in-out;
 	}
 
-	blockquote.completed {
+	.animated blockquote {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate3d(
+			calc(-50% + var(--offset) + var(--shift)),
+			calc(var(--offset) + var(--shift)),
+			0
+		);
+	}
+
+	.animated blockquote.completed {
 		transform: translate3d(
 			calc(-50% + var(--offset) + var(--shift)),
 			calc((var(--height) + (var(--count) * var(--pad))) * -1.05),
@@ -156,6 +167,15 @@
 		padding: 16px 0;
 	}
 
+	.title {
+		font-size: var(--16px);
+		margin: 32px auto 8px auto;
+	}
+
+	.animated .title {
+		display: none;
+	}
+
 	p.censored {
 		--stroke-width: 2px;
 		font-size: var(--24px);
@@ -176,19 +196,27 @@
 	}
 
 	.steps {
+		display: none;
 		position: relative;
 		opacity: 1;
+	}
+
+	.animated .steps {
+		display: block;
 		margin-top: calc((var(--height) * -1) - 32px);
 	}
 
 	.step {
 		color: var(--color-fg-darker);
-		height: calc(var(--height));
 		opacity: 0.25;
 		pointer-events: none;
 		max-width: var(--col-width);
 		margin: 0 auto;
 		transition: opacity calc(var(--1s) * 0.25) ease-in-out;
+	}
+
+	.animated .step {
+		height: calc(var(--height));
 	}
 
 	.step.active {

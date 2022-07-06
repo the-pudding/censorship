@@ -7,8 +7,7 @@
 	import Compare from "$components/Graphic.Compare.svelte";
 	import Scroll from "$components/Graphic.Scroll.svelte";
 	import Video from "$components/Graphic.Video.svelte";
-	// import Toggler from "$components/helpers/Toggle.svelte";
-	import MotionToggle from "$lib/components/helpers/MotionToggle.svelte";
+	import Options from "$components/Options.svelte";
 
 	const copy = getContext("copy");
 	const data = getContext("data");
@@ -16,11 +15,8 @@
 </script>
 
 <article>
-	<div class="motion">
-		<!-- <Toggler label="Motion" /> -->
-		<MotionToggle />
-	</div>
 	<Title />
+	<Options />
 	{#each copy.sections as { id, chunks }}
 		<section {id}>
 			{#each chunks as { type, text, component, clips, steps, classname }}
@@ -41,12 +37,5 @@
 <style>
 	article {
 		padding: 0 16px;
-	}
-
-	.motion {
-		position: fixed;
-		bottom: 16px;
-		right: 16px;
-		z-index: var(--z-overlay);
 	}
 </style>

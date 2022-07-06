@@ -22,7 +22,7 @@
 
 <div class="wrapper">
 	{#if showLabel}
-		<label for="motion-toggle">Motion</label>
+		<label for="motion-toggle">Animations</label>
 	{/if}
 	<button
 		aria-label="{aria} motion"
