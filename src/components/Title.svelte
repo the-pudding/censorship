@@ -26,7 +26,7 @@
 		font-weight: bold;
 		text-transform: uppercase;
 		font-size: var(--40px);
-		line-height: 1.2;
+		line-height: 1.4;
 	}
 
 	p {
