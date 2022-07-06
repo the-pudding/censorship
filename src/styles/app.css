@@ -143,6 +143,10 @@ aside {
 	font-size: var(--16px);
 }
 
+#context p strong {
+	color: var(--color-primary);
+}
+
 @media only screen and (min-width: 25rem) {
 	article p {
 		--size: var(--20px);
@@ -171,7 +175,7 @@ aside {
 
 	#method p {
 	font-size: var(--20px);
-}
+	}
 }
 
 @media screen and (prefers-reduced-motion: no-preference) {
