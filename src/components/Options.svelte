@@ -5,7 +5,6 @@
 	let value = "off";
 
 	$: $animations = value === "off";
-	$: console.log($animations);
 </script>
 
 <p class="warning">
