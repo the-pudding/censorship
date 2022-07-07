@@ -16,7 +16,7 @@
 	};
 </script>
 
-<div class="toggle toggle--{style}">
+<span class="toggle toggle--{style}">
 	<span class="label" {id}>{label}</span>
 	<button
 		role="switch"
@@ -29,10 +29,10 @@
 			<span>{options[1]}</span>
 		{/if}
 	</button>
-</div>
+</span>
 
 <style>
-	.toggle {
+	span.toggle {
 		display: inline-flex;
 		align-items: center;
 	}

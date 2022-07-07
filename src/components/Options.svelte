@@ -8,12 +8,8 @@
 </script>
 
 <p class="warning">
-	This story contains scroll-driven visuals.
-	<Toggle
-		label="View them in
-	static format"
-		bind:value
-	/>
+	<span>This story contains scroll-driven visuals.</span>
+	<Toggle label="View them in static format" bind:value />
 </p>
 
 <div>
@@ -34,5 +30,6 @@
 		font-size: var(--16px);
 		padding: 8px;
 		text-align: center;
+		line-height: 2;
 	}
 </style>
