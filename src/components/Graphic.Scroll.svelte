@@ -55,6 +55,7 @@
 		width: 85%;
 		margin-left: auto;
 		margin-right: auto;
+		pointer-events: none;
 	}
 
 	.animated .step {
@@ -68,6 +69,7 @@
 	.step p {
 		position: relative;
 		padding: 16px 0;
+		pointer-events: all;
 	}
 
 	.step span {

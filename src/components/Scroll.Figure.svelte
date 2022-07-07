@@ -3,15 +3,26 @@
 	import { getContext } from "svelte";
 	import getEpisodes from "$data/getEpisodes.js";
 	import viewport from "$stores/viewport.js";
+	import csvDownload from "$utils/csvDownload.js";
 
 	export let index;
 
 	const data = getContext("data");
 	const episodes = getEpisodes(data);
+	const overlayData = csvDownload(
+		data.map((d) => ({
+			season: d.season,
+			episode: d.episode,
+			start_seconds: d.timeStart,
+			end_seconds: d.timeStop,
+			category: d.type
+		}))
+	);
 
 	let caption = { chart: "stacked bar chart", data: "", reason: "" };
 	let figureWidth = 0;
 	let example;
+	let overlayVisible = false;
 	const maxSeconds = max(data, (d) => d.timeStop);
 	const maxMin = Math.ceil(maxSeconds / 60);
 
@@ -70,6 +81,7 @@
 	class:categorize
 	class:lost
 >
+	<figcaption class="sr-only" aria-live="polite">{figcaption}</figcaption>
 	<div class="episodes" bind:clientWidth={figureWidth}>
 		{#each episodes as { index, scenes } (index)}
 			{@const empty = !scenes.length}
@@ -105,9 +117,16 @@
 			</div>
 		{/each}
 	</div>
-	<figcaption class="sr-only" aria-live="polite">{figcaption}</figcaption>
+	<p>
+		<a download href={overlayData}>Download data</a>
+	</p>
 </figure>
 
+<!-- <OverlayTable
+	data={overlayData}
+	visible={overlayVisible}
+	caption="Removed scenes in the first 100 episodes of The Big Bang Theory"
+/> -->
 <style>
 	figure {
 		--dur: var(--1s);
@@ -280,6 +299,19 @@
 		background: var(--color-tertiary);
 	}
 
+	p {
+		width: 80%;
+		text-align: right;
+		font-size: var(--12px);
+		max-width: 100%;
+		margin: 8px auto;
+	}
+
+	a {
+		text-transform: uppercase;
+		color: var(--color-fg-darker);
+	}
+
 	@media screen and (min-width: 40rem) {
 		.content {
 			font-size: var(--16px);
@@ -304,6 +336,10 @@
 
 		[data-episode="100"]:before {
 			display: block;
+		}
+
+		p {
+			width: 80%;
 		}
 	}
 </style>
