@@ -15,6 +15,7 @@
 </script>
 
 <article>
+	<p>test</p>
 	<Title />
 	<Options />
 	{#each copy.sections as { id, chunks }}
