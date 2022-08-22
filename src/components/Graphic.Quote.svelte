@@ -64,7 +64,7 @@
 		--color-quote: var(--color-secondary);
 	}
 
-	.animated .wrapper {
+	.wrapper {
 		--height: 320px;
 	}
 
