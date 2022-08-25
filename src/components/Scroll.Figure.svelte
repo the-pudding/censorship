@@ -1,8 +1,8 @@
 <script>
 	import { max } from "d3";
-	import { getContext } from "svelte";
-	import getEpisodes from "$data/getEpisodes.js";
+	import { onMount, getContext } from "svelte";
 	import viewport from "$stores/viewport.js";
+	import getEpisodes from "$data/getEpisodes.js";
 	import csvDownload from "$utils/csvDownload.js";
 
 	export let index;
@@ -23,6 +23,8 @@
 	let figureWidth = 0;
 	let example;
 	let overlayVisible = false;
+	let vh = 0;
+
 	const maxSeconds = max(data, (d) => d.timeStop);
 	const maxMin = Math.ceil(maxSeconds / 60);
 
@@ -32,10 +34,11 @@
 		return `translate3d(${left}, ${top}, 0)`;
 	};
 
+	$: if (vh && $viewport.width) vh = window.innerHeight;
 	$: visible = index > 0;
 	$: categorize = index > 1;
 	$: lost = index > 5;
-	$: height = Math.min(7, Math.floor($viewport.height / 100));
+	$: height = Math.min(7, Math.floor(vh / 100));
 	$: {
 		if (index === 3) example = "sex";
 		else if (index === 4) example = "non-heteronormative-relationship";
@@ -72,6 +75,10 @@
 	}
 
 	$: figcaption = `${caption.chart} of ${caption.data} where ${caption.reason}`;
+
+	onMount(() => {
+		vh = window.innerHeight;
+	});
 </script>
 
 <figure
@@ -83,39 +90,41 @@
 >
 	<figcaption class="sr-only" aria-live="polite">{figcaption}</figcaption>
 	<div class="episodes" bind:clientWidth={figureWidth}>
-		{#each episodes as { index, scenes } (index)}
-			{@const empty = !scenes.length}
-			<div class="episode" class:empty data-episode={index + 1}>
-				{#each scenes as { width, i, x, type, targetY, targetX, content }}
-					{@const transform = getTransform({
-						x,
-						targetY,
-						targetX,
-						index,
-						l: lost,
-						w: figureWidth
-					})}
-					<div
-						class="scene {type}"
-						class:elevate={!!content}
-						data-tx={targetX}
-						data-ty={targetY}
-						style:width
-						style:transform
-						style="--delay: {i};"
-					>
-						{#if content}
-							<span
-								class="content"
-								class:visible={example === type}
-								class:left={targetX > 0.75}
-								class:right={targetX < 0.25}>{content}</span
-							>
-						{/if}
-					</div>
-				{/each}
-			</div>
-		{/each}
+		{#key vh}
+			{#each episodes as { index, scenes } (index)}
+				{@const empty = !scenes.length}
+				<div class="episode" class:empty data-episode={index + 1}>
+					{#each scenes as { width, i, x, type, targetY, targetX, content }}
+						{@const transform = getTransform({
+							x,
+							targetY,
+							targetX,
+							index,
+							l: lost,
+							w: figureWidth
+						})}
+						<div
+							class="scene {type}"
+							class:elevate={!!content}
+							data-tx={targetX}
+							data-ty={targetY}
+							style:width
+							style:transform
+							style="--delay: {i};"
+						>
+							{#if content}
+								<span
+									class="content"
+									class:visible={example === type}
+									class:left={targetX > 0.75}
+									class:right={targetX < 0.25}>{content}</span
+								>
+							{/if}
+						</div>
+					{/each}
+				</div>
+			{/each}
+		{/key}
 	</div>
 	<p>
 		<a download="big-bang-theory-censorship.csv" href={overlayData}

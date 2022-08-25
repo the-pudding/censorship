@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from "svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Figure from "$components/Scroll.Figure.svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
@@ -9,6 +10,7 @@
 	export let steps;
 	let value = 0;
 	let stepEls = [];
+	let vh = 0;
 
 	const jump = (i) => {
 		const { top } = stepEls[i].getBoundingClientRect();
@@ -16,9 +18,14 @@
 	};
 
 	$: scrollIndex = value || 0;
-	$: height = $animations ? `${$viewport.height}px` : "auto";
-	$: marginTop = $animations ? `${$viewport.height * -0.5}px` : "0";
+	$: height = $animations ? `${vh}px` : "auto";
+	$: marginTop = $animations ? `${vh * -0.5}px` : "0";
 	$: animated = $animations;
+	$: if (vh && $viewport.width) vh = window.innerHeight;
+
+	onMount(() => {
+		vh = window.innerHeight;
+	});
 </script>
 
 {#if $animations}
@@ -32,14 +39,6 @@
 				<p>
 					<span class="bg" />
 					<span>{@html text}</span>
-					<!-- <span class="nav">
-						<button disabled={i === 0} on:click={() => jump(i - 1)}>Prev</button
-						>
-						<button
-							disabled={i === steps.length - 1}
-							on:click={() => jump(i + 1)}>Next</button
-						>
-					</span> -->
 				</p>
 				{#if !$animations}
 					<Figure index={i} />
@@ -90,25 +89,6 @@
 	:global(.step mark) {
 		text-shadow: none;
 	}
-
-	/* .nav {
-		display: flex;
-		justify-content: space-between;
-		margin-top: 16px;
-	} */
-
-	/* button {
-		display: inline-block;
-		font-size: var(--12px);
-		background: transparent;
-		border: 2px solid var(--color-fg-darker);
-		color: var(--color-fg-darker);
-		text-transform: uppercase;
-	} */
-
-	/* button:hover {
-		background: var(--color-gray-1000);
-	} */
 
 	@media screen and (min-width: 40rem) {
 		.steps {
