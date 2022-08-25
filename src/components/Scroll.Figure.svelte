@@ -118,7 +118,9 @@
 		{/each}
 	</div>
 	<p>
-		<a download href={overlayData}>Download data</a>
+		<a download="big-bang-theory-censorship.csv" href={overlayData}
+			>Download data</a
+		>
 	</p>
 </figure>
 
