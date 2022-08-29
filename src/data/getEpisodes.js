@@ -10,11 +10,11 @@ export default function getEpisodes(data) {
 	let row = 0;
 	let tallyLeft = 0;
 	const scenes = data.map((d, i) => {
-		const w = (d.timeStop - d.timeStart) / maxSeconds * 100;
-		const width = `${w}%`;
-		const left = `${d.timeStart / maxSeconds * 100}%`;
+		const w = (d.timeStop - d.timeStart) / maxSeconds;
+		const width = `${w * 100}%`;
+		const x = d.timeStart / maxSeconds;
 
-		if (tallyLeft + w > 100) {
+		if (tallyLeft + w > 1) {
 			tallyLeft = 0;
 			row += 1;
 		}
@@ -24,7 +24,7 @@ export default function getEpisodes(data) {
 		return {
 			...d,
 			i,
-			left,
+			x,
 			width,
 			targetX,
 			targetY

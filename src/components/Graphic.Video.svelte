@@ -12,7 +12,13 @@
 <style>
   div {
     max-width: var(--col-width);
-    margin: 0 auto;
-    min-height: 200px;
+    margin: var(--32px) auto;
+    min-height: 160px;
+  }
+
+  @media screen and (min-width: 60rem) {
+    div {
+      margin: var(--64px) auto;
+    }
   }
 </style>

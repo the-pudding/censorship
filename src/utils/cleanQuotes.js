@@ -6,7 +6,8 @@ const parseVtt = (str) => {
 			.replace("</v>", "")
 			.replace("<c.highlight>", "<mark>")
 			.replace("</c>", "</mark>");
-		const q = r.split("\n")[0];
+		const rSplit = r.split("\n");
+		const q = rSplit.slice(0, rSplit.length < 4 ? rSplit.length : -3).join(" ");
 		const [speaker, text] = q.split(":");
 		return { speaker, text };
 	});
@@ -18,7 +19,7 @@ export default async function cleanQuotes({ data, clips }) {
 	const clean = [];
 
 	for (let id of clips) {
-		const response = await fetch(`/assets/captions/${id}.vtt`);
+		const response = await fetch(`assets/captions/${id}.vtt`);
 		const text = await response.text();
 		const lines = parseVtt(text);
 
@@ -26,6 +27,7 @@ export default async function cleanQuotes({ data, clips }) {
 		clean.push({
 			id,
 			lines,
+			title: `Season ${match.season} Episode ${match.episode}`,
 			lineIndex: +match.lineNumber - 1
 		});
 	}
