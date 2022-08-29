@@ -338,7 +338,7 @@
 		height: 1em;
 		border-radius: 50%;
 		padding: 0;
-		opacity: 0.5;
+		opacity: 0.7;
 		text-align: center;
 		background: transparent;
 		color: var(--color-white);
@@ -403,7 +403,7 @@
 		margin: 0;
 		z-index: var(--z-top);
 		color: var(--color-fg);
-		opacity: 0.75;
+		opacity: 0.7;
 		text-transform: uppercase;
 		font-size: var(--12px);
 		line-height: 1;
